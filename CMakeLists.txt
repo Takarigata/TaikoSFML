@@ -7,10 +7,14 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
+file(GLOB_RECURSE EXTERNALCPP "External/*.cpp")
+file(GLOB_RECURSE EXTERNALHPP "External/*.hpp")
+find_package(OpenGL REQUIRED)
 
-add_executable(TaikoSFML src/main.cpp)
+add_executable(TaikoSFML src/main.cpp ${EXTERNALCPP} ${EXTERNALHPP})
 target_link_libraries(TaikoSFML PRIVATE sfml-graphics)
-target_include_directories(TaikoSFML PUBLIC External/imgui)
+target_link_libraries(TaikoSFML PRIVATE OpenGL::GL)
+target_include_directories(TaikoSFML PRIVATE External/imgui)
 target_compile_features(TaikoSFML PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)
     add_custom_command(TARGET TaikoSFML POST_BUILD

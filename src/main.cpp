@@ -1,68 +1,64 @@
-
-// #include <SFML/Graphics.hpp>
-
-// int main()
-// {
-//     auto window = sf::RenderWindow{ { 1920u, 1080u }, "CMake SFML Project" };
-//     window.setFramerateLimit(144);
-
-//     while (window.isOpen())
-//     {
-//         for (auto event = sf::Event{}; window.pollEvent(event);)
-//         {
-//             if (event.type == sf::Event::Closed)
-//             {
-//                 window.close();
-//             }
-//         }
-
-//         window.clear();
-//         window.display();
-//     }
-// }
-
 #include "imgui.h"
 #include "imgui-SFML.h"
 
-#include <SFML/Graphics/CircleShape.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/System/Clock.hpp>
-#include <SFML/Window/Event.hpp>
+#include "SFML/Graphics.hpp"
 
-int main() {
-    sf::RenderWindow window(sf::VideoMode(640, 480), "ImGui + SFML = <3");
-    window.setFramerateLimit(60);
-    bool test = ImGui::SFML::Init(window);
+int main()
+{
+    sf::RenderWindow window(sf::VideoMode(800, 800), "Window Title");
+    ImGui::SFML::Init(window);
 
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    bool circleExists = true;
+    float circleRadius = 200.0f;
+    int circleSegments = 100;
+    float circleColor[3] = { (float)204 / 255, (float)77 / 255, (float)5 / 255 };
+    sf::CircleShape shape(circleRadius, circleSegments);
+    shape.setFillColor(sf::Color
+    (
+        (int)(circleColor[0] * 255), 
+        (int)(circleColor[1] * 255), 
+        (int)(circleColor[2] * 255)
+    )); // Color circle
+    shape.setOrigin(circleRadius, circleRadius);
+    shape.setPosition(400, 400); // Center circle
 
     sf::Clock deltaClock;
-    while (window.isOpen()) {
+    while (window.isOpen())
+    {
         sf::Event event;
-        while (window.pollEvent(event)) {
-            ImGui::SFML::ProcessEvent(window, event);
-
-            if (event.type == sf::Event::Closed) {
+        while (window.pollEvent(event))
+        {
+            ImGui::SFML::ProcessEvent(event);
+            if (event.type == sf::Event::Closed)
                 window.close();
-            }
         }
-
         ImGui::SFML::Update(window, deltaClock.restart());
 
-        ImGui::ShowDemoWindow();
-
-        ImGui::Begin("Hello, world!");
-        ImGui::Button("Look at this pretty button");
+        ImGui::Begin("Window title");
+        ImGui::Text("Window text!");
+        ImGui::Checkbox("Circle", &circleExists);
+        ImGui::SliderFloat("Radius", &circleRadius, 100.0f, 300.0f);
+        ImGui::SliderInt("Sides", &circleSegments, 3, 150);
+        ImGui::ColorEdit3("Color Circle", circleColor);
         ImGui::End();
 
-        window.clear();
-        window.draw(shape);
+        shape.setRadius(circleRadius);
+        shape.setOrigin(circleRadius, circleRadius);
+        shape.setPointCount(circleSegments);
+        shape.setFillColor(sf::Color
+        (
+            (int)(circleColor[0] * 255),
+            (int)(circleColor[1] * 255),
+            (int)(circleColor[2] * 255)
+        )); // Color circle
+
+        window.clear(sf::Color(18, 33, 43)); // Color background
+        if (circleExists)
+            window.draw(shape);
         ImGui::SFML::Render(window);
         window.display();
     }
 
     ImGui::SFML::Shutdown();
-
     return 0;
 }
