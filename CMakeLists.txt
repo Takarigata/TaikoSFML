@@ -17,12 +17,16 @@ add_executable(TaikoSFML src/main.cpp ${GAMEFRAMEWORK} ${ENGINERAMEWORK} ${EXTER
 target_link_libraries(TaikoSFML PRIVATE sfml-graphics)
 target_link_libraries(TaikoSFML PRIVATE OpenGL::GL)
 target_include_directories(TaikoSFML PRIVATE External/imgui)
-target_include_directories(TaikoSFML PUBLIC src/GameFramework/Public)
-target_include_directories(TaikoSFML PUBLIC src/EngineFramework/Public)
+target_include_directories(TaikoSFML PRIVATE src/GameFramework/Public)
+target_include_directories(TaikoSFML PRIVATE src/EngineFramework/Public)
 target_compile_features(TaikoSFML PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)
     add_custom_command(TARGET TaikoSFML POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:TaikoSFML> $<TARGET_FILE_DIR:TaikoSFML> COMMAND_EXPAND_LISTS)
 endif()
-
+add_custom_command(
+        TARGET ${PROJECT_NAME}  POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+                ${CMAKE_SOURCE_DIR}/Assets/Fonts/DFPKanteiryu-XB.ttf
+                $<TARGET_FILE_DIR:TaikoSFML>/Assets/Fonts/DFPKanteiryu-XB.ttf)
 install(TARGETS TaikoSFML)

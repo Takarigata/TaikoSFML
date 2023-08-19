@@ -1,7 +1,6 @@
 ﻿#include "../Public/Game.h"
-
 #include <algorithm>
-#include "imgui-SFML.h"
+
 
 GameSFML::GameSFML()
 {}
@@ -18,6 +17,8 @@ void GameSFML::init(const char* title, int width, int height, bool fullscreen)
     }
     m_window = new sf::RenderWindow(sf::VideoMode(width, height), title, flag);
     m_window->setFramerateLimit(144);
+    WindowManagerSubSystem::GetInstance()->SetWindowRef(m_window);
+
     ImGui::SFML::Init(*m_window, false);
     InitImGuiFont();
     InitDebugTools();
@@ -51,7 +52,7 @@ void GameSFML::InitImGuiFont()
 {
     ImGuiIO& IO = ImGui::GetIO();
     IO.Fonts->Clear();
-    IO.Fonts->AddFontFromFileTTF("DFPKanteiryu-XB.ttf", 8.f, NULL, IO.Fonts->GetGlyphRangesJapanese());
+    IO.Fonts->AddFontFromFileTTF("Assets/Fonts/DFPKanteiryu-XB.ttf", 8.f, NULL, IO.Fonts->GetGlyphRangesJapanese());
 
     ImGui::SFML::UpdateFontTexture();
 }
@@ -64,6 +65,11 @@ void GameSFML::InitDebugTools()
 void GameSFML::update()
 {
     cnt++;
+    Scene* CurrentScene = SceneManagerSubSystem::GetInstance()->GetActiveScene();
+    if(CurrentScene)
+    {
+        CurrentScene->UpdateScene();
+    }
 }
 
 void GameSFML::render()

@@ -1,11 +1,14 @@
 ﻿#pragma once
-
+#include "WindowManager.h"
+#include "SceneManager.h"
 #include <map>
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Clock.hpp>
 #include "imgui.h"
 #include "imconfig-SFML.h"
+#include "imgui-SFML.h"
+
 
 
 

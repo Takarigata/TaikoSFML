@@ -28,5 +28,5 @@ void Scene::CloseScene()
 
 void Scene::UpdateScene()
 {
-
+    printf("UPDATING SCENE \n");
 }
