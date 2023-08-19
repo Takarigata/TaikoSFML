@@ -9,7 +9,6 @@ int main(int argc, char* argv[])
 	gameSFML = new GameSFML();
 	
 	gameSFML->init("Taiko SDK", 1920 , 1080, false);
-	//printf("Window = %d", WindowManagerSubSystem::GetInstance()->GetWindowRef()->getSize().x);
 
 	
 	while(gameSFML->running())

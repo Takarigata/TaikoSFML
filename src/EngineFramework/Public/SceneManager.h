@@ -19,6 +19,8 @@ class SceneManagerSubSystem
 
         bool SetActiveScene(Scene* NewActiveScene);
 
+        Scene* ActiveTqt;
+
     protected:
 
         static SceneManagerSubSystem* m_instance;

@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Clock.hpp>
 #include "imgui.h"
+#include "../Scene/Public/TestScene.h"
 #include "imconfig-SFML.h"
 #include "imgui-SFML.h"
 
@@ -44,6 +45,8 @@ private:
     sf::Font* font;
     sf::Clock* m_deltaClock;
     map<sf::Drawable*, sf::RenderStates*> ObjectsToDraw;
+
+    Scene* BaseScene;
 
     
     

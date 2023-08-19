@@ -18,29 +18,14 @@ void GameSFML::init(const char* title, int width, int height, bool fullscreen)
     m_window = new sf::RenderWindow(sf::VideoMode(width, height), title, flag);
     m_window->setFramerateLimit(144);
     WindowManagerSubSystem::GetInstance()->SetWindowRef(m_window);
+    BaseScene = new TestScene();
+    BaseScene->InitScene();
+    SceneManagerSubSystem::GetInstance()->SetActiveScene(BaseScene);
 
     ImGui::SFML::Init(*m_window, false);
     InitImGuiFont();
     InitDebugTools();
     m_deltaClock = new sf::Clock();
-    
-    font = new sf::Font();
-    if(font)
-    {
-        font->loadFromFile("DFPKanteiryu-XB.ttf");
-    }
-
-    auto text = new sf::Text();
-    auto renderstate = new sf::RenderStates();
-    text->setFont(*font);
-    text->setString(L"Taiko no 太鼓の達人, アニメ, ひらがな");
-    text->setCharacterSize(24);
-    text->setStyle(sf::Text::Bold);
-    text->setFillColor(sf::Color::Red);
-
-    shape = new sf::CircleShape(20.f);
-    ObjectsToDraw.insert(std::pair<sf::Drawable*, sf::RenderStates*>(text, renderstate));
-    ObjectsToDraw.insert(std::pair<sf::Drawable*, sf::RenderStates*>(shape, renderstate));
     
     if(m_window)
     {
@@ -75,22 +60,10 @@ void GameSFML::update()
 void GameSFML::render()
 {
     m_window->clear();
-    std::vector<sf::Drawable*> key;
-    std::vector<sf::RenderStates*> value;
-    for(std::map<sf::Drawable*, sf::RenderStates*>::iterator it = ObjectsToDraw.begin(); it != ObjectsToDraw.end(); ++it) {
-        key.push_back(it->first);
-        value.push_back(it->second);
-    }
-    for(auto& ObjectToDraw : key)
-    {
-        m_window->draw(*ObjectToDraw, *ObjectsToDraw[ObjectToDraw]);
-    }
-    
     ImGui::SFML::Update(*m_window, m_deltaClock->restart());
-
-    
+    Scene* CurrentScene = SceneManagerSubSystem::GetInstance()->GetActiveScene();
+    CurrentScene->RenderScene();
     ImGui::ShowDemoWindow();
-    
     ImGui::SFML::Render(*m_window);
     m_window->display();
 }

@@ -29,6 +29,7 @@ bool SceneManagerSubSystem::SetActiveScene(Scene* NewActiveScene)
     if(NewActiveScene)
     {
         CurrentActiveScene = NewActiveScene;
+        printf("Active Scene = %s", CurrentActiveScene->SceneName);
         return true;
     }
 
