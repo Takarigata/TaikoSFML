@@ -28,10 +28,10 @@ protected:
 };
 
 //Init Singleton
-BaseEngineSubsystem* BaseEngineSubsystem::m_instance = nullptr;
+inline BaseEngineSubsystem* BaseEngineSubsystem::m_instance = nullptr;
 
 
-BaseEngineSubsystem* BaseEngineSubsystem::GetInstance()
+inline BaseEngineSubsystem* BaseEngineSubsystem::GetInstance()
 {
     if(!m_instance)
     {
@@ -41,7 +41,7 @@ BaseEngineSubsystem* BaseEngineSubsystem::GetInstance()
     return m_instance;
 }
 
-void BaseEngineSubsystem::Destroy()
+inline void BaseEngineSubsystem::Destroy()
 {
     delete m_instance;
     m_instance = 0;

@@ -3,7 +3,6 @@
 Scene::Scene()
 {
     InitScene();
-    printf("PARENT \n");
 }
 
 Scene::~Scene()
@@ -45,7 +44,7 @@ void Scene::CloseScene()
 
 void Scene::UpdateScene()
 {
-    printf("UPDATING SCENE \n");
+    //printf("UPDATING SCENE \n");
     cnt++;
 }
 
@@ -59,8 +58,8 @@ void Scene::RenderScene()
     }
     for(auto& ObjectToDraw : key)
     {
-        if(WindowManagerSubSystem::GetInstance()->GetWindowRef())
-            WindowManagerSubSystem::GetInstance()->GetWindowRef()->draw(*ObjectToDraw, *ObjectsToDraw[ObjectToDraw]);
+        if(static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->GetWindowRef())
+            static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->GetWindowRef()->draw(*ObjectToDraw, *ObjectsToDraw[ObjectToDraw]);
         else
             printf("NO WINDOW REF \n");
     }

@@ -17,10 +17,10 @@ void GameSFML::init(const char* title, int width, int height, bool fullscreen)
     }
     m_window = new sf::RenderWindow(sf::VideoMode(width, height), title, flag);
     m_window->setFramerateLimit(144);
-    WindowManagerSubSystem::GetInstance()->SetWindowRef(m_window);
+    static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->SetWindowRef(m_window);
     BaseScene = new TestScene();
     BaseScene->InitScene();
-    SceneManagerSubSystem::GetInstance()->SetActiveScene(BaseScene);
+    static_cast<SceneManagerSubSystem*>(SceneManagerSubSystem::GetInstance())->SetActiveScene(BaseScene);
 
     ImGui::SFML::Init(*m_window, false);
     InitImGuiFont();
@@ -50,7 +50,8 @@ void GameSFML::InitDebugTools()
 void GameSFML::update()
 {
     cnt++;
-    Scene* CurrentScene = SceneManagerSubSystem::GetInstance()->GetActiveScene();
+    //static_cast<SceneManagerSubSystem*>(SceneManagerSubSystem::GetInstance())->GetActiveScene();
+    Scene* CurrentScene = static_cast<SceneManagerSubSystem*>(SceneManagerSubSystem::GetInstance())->GetActiveScene();
     if(CurrentScene)
     {
         CurrentScene->UpdateScene();
@@ -61,7 +62,7 @@ void GameSFML::render()
 {
     m_window->clear();
     ImGui::SFML::Update(*m_window, m_deltaClock->restart());
-    Scene* CurrentScene = SceneManagerSubSystem::GetInstance()->GetActiveScene();
+    Scene* CurrentScene = static_cast<SceneManagerSubSystem*>(SceneManagerSubSystem::GetInstance())->GetActiveScene();
     CurrentScene->RenderScene();
     ImGui::ShowDemoWindow();
     ImGui::SFML::Render(*m_window);

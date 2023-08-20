@@ -1,19 +1,14 @@
 #pragma once
 #include "Scene.h"
+#include "BaseEngineSubsystem.h"
 
 
-class SceneManagerSubSystem
+class SceneManagerSubSystem : public BaseEngineSubsystem
 {
     public:
 
         SceneManagerSubSystem();
         ~SceneManagerSubSystem();
-
-        static SceneManagerSubSystem* GetInstance();
-
-        static void Destroy();
-
-        //Scene Getter and Setter
 
         Scene* GetActiveScene();
 

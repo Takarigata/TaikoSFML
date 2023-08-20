@@ -23,6 +23,7 @@ void TestScene::InitScene()
     text->setStyle(sf::Text::Bold);
     text->setFillColor(sf::Color::Red);
 
+
     shape = new sf::CircleShape(50.f);
     shape->setFillColor(sf::Color::Blue);
     ObjectsToDraw.insert(std::pair<sf::Drawable*, sf::RenderStates*>(text, renderstate));
@@ -35,7 +36,7 @@ void TestScene::UpdateScene()
     Scene::UpdateScene();
     //printf("UPDATING SCENE 2  \n");
     sine = std::sin((cnt *.01) *1);
-    printf("SIN = %f \n", sine);
+    //printf("SIN = %f \n", sine);
     shape->setScale(sine, sine);
     
 
@@ -43,19 +44,5 @@ void TestScene::UpdateScene()
 
 void TestScene::RenderScene()
 {
-    //printf("RENDERING");
-    std::vector<sf::Drawable*> key;
-    std::vector<sf::RenderStates*> value;
-    for(std::map<sf::Drawable*, sf::RenderStates*>::iterator it = ObjectsToDraw.begin(); it != ObjectsToDraw.end(); ++it) {
-        key.push_back(it->first);
-        value.push_back(it->second);
-    }
-    for(auto& ObjectToDraw : key)
-    {
-        if(WindowManagerSubSystem::GetInstance()->GetWindowRef())
-            WindowManagerSubSystem::GetInstance()->GetWindowRef()->draw(*ObjectToDraw, *ObjectsToDraw[ObjectToDraw]);
-        else
-            printf("NO WINDOW REF \n");
-    }
-
+    Scene::RenderScene();
 }
