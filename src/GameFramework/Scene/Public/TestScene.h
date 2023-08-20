@@ -6,8 +6,6 @@ class TestScene : public Scene
 {
     public:
 
-        // TestScene();
-        // ~TestScene();
 
         void InitScene() override;
 

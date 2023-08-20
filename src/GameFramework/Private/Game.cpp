@@ -17,8 +17,9 @@ void GameSFML::init(const char* title, int width, int height, bool fullscreen)
     }
     m_window = new sf::RenderWindow(sf::VideoMode(width, height), title, flag);
     m_window->setFramerateLimit(144);
+    m_window->setVerticalSyncEnabled(true);
     static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->SetWindowRef(m_window);
-    BaseScene = new TestScene();
+    BaseScene = new MainMenuScene();
     BaseScene->InitScene();
     static_cast<SceneManagerSubSystem*>(SceneManagerSubSystem::GetInstance())->SetActiveScene(BaseScene);
 

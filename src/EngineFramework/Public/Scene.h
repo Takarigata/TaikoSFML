@@ -5,6 +5,7 @@
 #include <map>
 #include "WindowManager.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Clock.hpp>
 
 class Scene
@@ -25,7 +26,11 @@ class Scene
 
         std::string SceneName = "BaseScene";
 
-        std::map<sf::Drawable*, sf::RenderStates*> ObjectsToDraw;
-        sf::CircleShape* shape;
-        sf::Font* font;
+        // std::map<sf::Drawable, sf::RenderStates> ObjectsToDraw;
+        // sf::CircleShape* shape;
+        // sf::Font* font;
+
+    protected:
+
+        sf::RenderWindow* window_ref;
 };

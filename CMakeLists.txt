@@ -11,14 +11,19 @@ file(GLOB_RECURSE EXTERNALCPP "External/*.cpp")
 file(GLOB_RECURSE EXTERNALHPP "External/*.hpp")
 file(GLOB_RECURSE GAMEFRAMEWORK RELATIVE ${CMAKE_SOURCE_DIR} "src/GameFramework/*.cpp")
 file(GLOB_RECURSE ENGINERAMEWORK RELATIVE ${CMAKE_SOURCE_DIR} "src/EngineFramework/*.cpp")
+file(GLOB_RECURSE TAIKOFRAMEWORK RELATIVE ${CMAKE_SOURCE_DIR} "src/TaikoFramework/*.cpp")
 find_package(OpenGL REQUIRED)
 
-add_executable(TaikoSFML src/main.cpp ${GAMEFRAMEWORK} ${ENGINERAMEWORK} ${EXTERNALCPP} ${EXTERNALHPP})
+add_executable(TaikoSFML src/main.cpp ${GAMEFRAMEWORK} ${ENGINERAMEWORK} ${TAIKOFRAMEWORK} ${EXTERNALCPP} ${EXTERNALHPP})
 target_link_libraries(TaikoSFML PRIVATE sfml-graphics)
+target_link_libraries(TaikoSFML PRIVATE sfml-audio)
 target_link_libraries(TaikoSFML PRIVATE OpenGL::GL)
 target_include_directories(TaikoSFML PRIVATE External/imgui)
 target_include_directories(TaikoSFML PRIVATE src/GameFramework/Public)
+target_include_directories(TaikoSFML PRIVATE src/EngineFramework/Lib/Math/Public)
 target_include_directories(TaikoSFML PRIVATE src/EngineFramework/Public)
+target_include_directories(TaikoSFML PRIVATE src/TaikoFramework/Scene/MainMenu/Public)
+target_include_directories(TaikoSFML PRIVATE ssrc/GameFramework/Utilities/Public)
 target_compile_features(TaikoSFML PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)
     add_custom_command(TARGET TaikoSFML POST_BUILD
@@ -26,7 +31,7 @@ if (WIN32 AND BUILD_SHARED_LIBS)
 endif()
 add_custom_command(
         TARGET ${PROJECT_NAME}  POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy
-                ${CMAKE_SOURCE_DIR}/Assets/Fonts/DFPKanteiryu-XB.ttf
-                $<TARGET_FILE_DIR:TaikoSFML>/Assets/Fonts/DFPKanteiryu-XB.ttf)
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+                ${CMAKE_SOURCE_DIR}/Assets
+                $<TARGET_FILE_DIR:TaikoSFML>/Assets)
 install(TARGETS TaikoSFML)

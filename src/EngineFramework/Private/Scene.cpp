@@ -3,6 +3,7 @@
 Scene::Scene()
 {
     InitScene();
+    window_ref = static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->GetWindowRef();
 }
 
 Scene::~Scene()
@@ -13,23 +14,7 @@ Scene::~Scene()
 
 void Scene::InitScene()
 {
-    // font = new sf::Font();
-    // if(font)
-    // {
-    //     font->loadFromFile("Assets/Fonts/DFPKanteiryu-XB.ttf");
-    // }
-
-    // auto text = new sf::Text();
-    // auto renderstate = new sf::RenderStates();
-    // text->setFont(*font);
-    // text->setString(L"Taiko no 太鼓の達人, アニメ, ひらがな base");
-    // text->setCharacterSize(35);
-    // text->setStyle(sf::Text::Bold);
-    // text->setFillColor(sf::Color::Red);
-
-    // shape = new sf::CircleShape(20.f);
-    // ObjectsToDraw.insert(std::pair<sf::Drawable*, sf::RenderStates*>(text, renderstate));
-    // ObjectsToDraw.insert(std::pair<sf::Drawable*, sf::RenderStates*>(shape, renderstate));
+    
 }
 
 void Scene::UnloadScene()
@@ -50,17 +35,17 @@ void Scene::UpdateScene()
 
 void Scene::RenderScene()
 {
-    std::vector<sf::Drawable*> key;
-    std::vector<sf::RenderStates*> value;
-    for(std::map<sf::Drawable*, sf::RenderStates*>::iterator it = ObjectsToDraw.begin(); it != ObjectsToDraw.end(); ++it) {
-        key.push_back(it->first);
-        value.push_back(it->second);
-    }
-    for(auto& ObjectToDraw : key)
-    {
-        if(static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->GetWindowRef())
-            static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->GetWindowRef()->draw(*ObjectToDraw, *ObjectsToDraw[ObjectToDraw]);
-        else
-            printf("NO WINDOW REF \n");
-    }
+    // std::vector<sf::Drawable> key;
+    // std::vector<sf::RenderStates> value;
+    // for(std::map<sf::Drawable, sf::RenderStates>::iterator it = ObjectsToDraw.begin(); it != ObjectsToDraw.end(); ++it) {
+    //     key.push_back(it->first);
+    //     value.push_back(it->second);
+    // }
+    // for(auto& ObjectToDraw : key)
+    // {
+    //     if(window_ref)
+    //         window_ref->draw(ObjectToDraw, ObjectsToDraw[ObjectToDraw]);
+    //     else
+    //         printf("NO WINDOW REF \n");
+    // }
 }

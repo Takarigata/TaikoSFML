@@ -7,6 +7,8 @@
 #include <SFML/System/Clock.hpp>
 #include "imgui.h"
 #include "../Scene/Public/TestScene.h"
+#include "../Scene/Public/TestScene2.h"
+#include "../../TaikoFramework/Scene/MainMenu/Public/MainMenuScene.h"
 #include "imconfig-SFML.h"
 #include "imgui-SFML.h"
 
