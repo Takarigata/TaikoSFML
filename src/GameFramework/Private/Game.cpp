@@ -94,11 +94,3 @@ bool GameSFML::running()
 {
     return isRunning;
 }
-
-
-
-
-
-
-
-

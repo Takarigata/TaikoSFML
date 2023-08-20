@@ -31,6 +31,8 @@ class MainMenuScene : public Scene
 
         sf::Sprite BackgroundSprite;
 
+        FadeTransition* FadeOut;
+
         void StartTransition();
 
 };
