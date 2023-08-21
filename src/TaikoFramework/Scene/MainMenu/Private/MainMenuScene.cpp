@@ -45,13 +45,13 @@ void MainMenuScene::SetupMenuGFX()
 void MainMenuScene::RenderScene()
 {
     window_ref->draw(BackgroundSprite);
-    if(FadeOut)
-    {
-        if(FadeOut->UpdateTransition())
-        {
-            FadeOut = nullptr;
-        }
+    // if(FadeOut)
+    // {
+    //     if(FadeOut->UpdateTransition())
+    //     {
+    //         FadeOut = nullptr;
+    //     }
 
-    }
+    // }
     Scene::RenderScene();
 }

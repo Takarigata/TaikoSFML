@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "EngineFramework/Public/EventHandler.h"
 // #include "BaseEngineSubsystem.h"
 
 GameSFML *gameSFML = nullptr;
@@ -14,6 +15,7 @@ int main(int argc, char* argv[])
 	while(gameSFML->running())
 	{
 		gameSFML->handleEvents();
+		static_cast<EventHandler*>(EventHandler::GetInstance())->UpdateInputEvent(gameSFML);
 		gameSFML->update();
 		gameSFML->render();
 	}

@@ -37,6 +37,8 @@ public:
     void InitImGuiFont();
 
     void InitDebugTools();
+
+    void SetGameRunningState(bool new_running_state);
     
 private:
     int cnt = 0;
@@ -49,6 +51,8 @@ private:
     map<sf::Drawable*, sf::RenderStates*> ObjectsToDraw;
 
     Scene* BaseScene;
+
+    // EventHandler* EventHandlerInst;
 
     
     

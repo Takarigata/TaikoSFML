@@ -23,6 +23,7 @@ void GameSFML::init(const char* title, int width, int height, bool fullscreen)
     BaseScene->InitScene();
     static_cast<SceneManagerSubSystem*>(SceneManagerSubSystem::GetInstance())->SetActiveScene(BaseScene);
 
+
     ImGui::SFML::Init(*m_window, false);
     InitImGuiFont();
     InitDebugTools();
@@ -72,16 +73,7 @@ void GameSFML::render()
 
 void GameSFML::handleEvents()
 {
-    sf::Event event;
-    if(m_window->pollEvent(event))
-    {
-        ImGui::SFML::ProcessEvent(*m_window, event);
-        if(event.type == sf::Event::Closed)
-        {
-            isRunning = false;
-        }
-    }
-    
+
 }
 
 void GameSFML::clean()
@@ -92,5 +84,11 @@ void GameSFML::clean()
 
 bool GameSFML::running()
 {
+
     return isRunning;
+}
+
+void GameSFML::SetGameRunningState(bool new_running_state)
+{
+    isRunning = new_running_state;
 }
