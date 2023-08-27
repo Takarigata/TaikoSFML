@@ -1,14 +1,16 @@
 #include "../Public/EventHandler.h"
+#include "Game.h"
 
-EventHandler::EventHandler(){};
-
-EventHandler::~EventHandler(){};
+EventHandler::EventHandler()
+{
+    printf(" START  Listen count = %d \n", ListenedObject.size());
+};
 
 void EventHandler::UpdateInputEvent(GameSFML* InGame)
 {
     if(InGame)
     {
-        printf("UPDATING INPUT \n");
+        //printf("UPDATING INPUT \n");
         sf::Event event;
         sf::RenderWindow* m_window = static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->GetWindowRef();
         if(m_window->pollEvent(event))
@@ -19,12 +21,29 @@ void EventHandler::UpdateInputEvent(GameSFML* InGame)
             {
                 InGame->SetGameRunningState(false);
             }
+            if(event.key.code == sf::Keyboard::J)
+            {
+                SendPressed();
+            }
         }
     }
     
 }
 
-void EventHandler::SetGameRef(GameSFML* InGame)
+
+bool EventHandler::AddObjectToListenner(InputComponent* ObjToAdd)
 {
-    game = InGame;
+   
+    printf("ADDED OBJ TO LISTENER \n");
+    ListenedObject.push_back(ObjToAdd);
+    return true;
+}
+
+void EventHandler::SendPressed()
+{
+    printf(" PRESSING  Listen count = %d \n", ListenedObject.size());
+    for(auto & Listnener : ListenedObject)
+    {
+        Listnener->method1();
+    }
 }

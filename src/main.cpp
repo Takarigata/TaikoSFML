@@ -9,13 +9,13 @@ int main(int argc, char* argv[])
 {
 	gameSFML = new GameSFML();
 	
-	gameSFML->init("Taiko SDK", 1920 , 1080, false);
+	gameSFML->init("Taiko SDK", 1920 , 1080, false, 144);
 
 	
 	while(gameSFML->running())
 	{
 		gameSFML->handleEvents();
-		static_cast<EventHandler*>(EventHandler::GetInstance())->UpdateInputEvent(gameSFML);
+		EventHandler::GetInstance2()->UpdateInputEvent(gameSFML);
 		gameSFML->update();
 		gameSFML->render();
 	}

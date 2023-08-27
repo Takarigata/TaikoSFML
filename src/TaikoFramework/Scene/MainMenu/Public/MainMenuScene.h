@@ -5,15 +5,20 @@
 #include <SFML/Audio/Music.hpp>
 #include <SFML/Audio/SoundStream.hpp>
 #include <SFML/System.hpp>
+#include <memory>
 #include <SFML/System/Clock.hpp>
 #include "../../GameFramework/Utilities/Public/FadeTransition.h"
 #include <cmath>
 #include "MathLib.h"
+#include "EventHandler.h"
+#include "../../GameFramework/Input/Public/InputComponent.h"
+
 
 
 class MainMenuScene : public Scene
 {
     public:
+        MainMenuScene();
         
         void InitScene() override;
 
@@ -35,4 +40,11 @@ class MainMenuScene : public Scene
 
         void StartTransition();
 
+        InputComponent* input_component;
+
+        EventHandler* eh_ref;
+
+
+
+        
 };

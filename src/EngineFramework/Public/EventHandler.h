@@ -1,13 +1,20 @@
+
 #pragma once
+#include <vector>
 #include "BaseEngineSubsystem.h"
 #include "WindowManager.h"
+#include <memory>
 #include <SFML/Graphics.hpp>
 #include "imgui.h"
 #include "imconfig-SFML.h"
 #include "imgui-SFML.h"
-#include "../../GameFramework/Public/Game.h"
+#include "../../GameFramework/Input/Public/InputComponent.h"
 
 
+
+
+
+class GameSFML;
 class EventHandler : public BaseEngineSubsystem
 {
     public:
@@ -17,11 +24,17 @@ class EventHandler : public BaseEngineSubsystem
 
         void UpdateInputEvent(GameSFML* InGame);
 
-        void SetGameRef(GameSFML* InGame);
+        bool AddObjectToListenner(InputComponent* ObjToAdd);
 
-        GameSFML* GetGameRef() { return game; };
+        std::vector<InputComponent*> ListenedObject;
 
-        GameSFML* game;
+        void SendPressed();
+
+        static EventHandler* GetInstance2();
+
+        static EventHandler* m_instance2;
+
+        
 
     protected:
 
@@ -31,3 +44,15 @@ class EventHandler : public BaseEngineSubsystem
 
 
 };
+
+inline EventHandler* EventHandler::m_instance2 = nullptr;
+
+inline EventHandler* EventHandler::GetInstance2()
+{
+    if(!m_instance2)
+    {
+        m_instance2 = new EventHandler();
+    }
+
+    return m_instance2;
+}

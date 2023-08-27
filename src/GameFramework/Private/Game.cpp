@@ -8,7 +8,7 @@ GameSFML::GameSFML()
 GameSFML::~GameSFML()
 {}
 
-void GameSFML::init(const char* title, int width, int height, bool fullscreen)
+void GameSFML::init(const char* title, int width, int height, bool fullscreen, int framerate)
 {
     int flag = 4;
     if(fullscreen)
@@ -16,7 +16,7 @@ void GameSFML::init(const char* title, int width, int height, bool fullscreen)
         flag = 8;
     }
     m_window = new sf::RenderWindow(sf::VideoMode(width, height), title, flag);
-    m_window->setFramerateLimit(144);
+    m_window->setFramerateLimit(framerate);
     m_window->setVerticalSyncEnabled(true);
     static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->SetWindowRef(m_window);
     BaseScene = new MainMenuScene();
@@ -52,7 +52,6 @@ void GameSFML::InitDebugTools()
 void GameSFML::update()
 {
     cnt++;
-    //static_cast<SceneManagerSubSystem*>(SceneManagerSubSystem::GetInstance())->GetActiveScene();
     Scene* CurrentScene = static_cast<SceneManagerSubSystem*>(SceneManagerSubSystem::GetInstance())->GetActiveScene();
     if(CurrentScene)
     {

@@ -24,7 +24,7 @@ public:
     GameSFML();
     ~GameSFML();
 
-    void init(const char* title, int width, int height, bool fullscreen);
+    void init(const char* title, int width, int height, bool fullscreen, int framerate);
 
 
     void handleEvents();
