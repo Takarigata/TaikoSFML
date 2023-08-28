@@ -1,4 +1,5 @@
 #include "../Public/EventHandler.h"
+#include "../../../../GameFramework/Public/Game.h"
 
 void EventHandler::UpdateInputEvent(GameSFML* InGame)
 {
@@ -25,11 +26,15 @@ void EventHandler::UpdateInputEvent(GameSFML* InGame)
     
 }
 
+void EventHandler::AddToListening(InputComponent* in_obj)
+{
+    ListeningInputComponent.push_back(in_obj);
+}
+
 void EventHandler::SendPressed()
 {
-    // printf(" PRESSING  Listen count = %d \n", ListenedObject.size());
-    // for(auto & Listnener : ListenedObject)
-    // {
-    //     Listnener->method1();
-    // }
+    for(auto & Listnener : ListeningInputComponent)
+    {
+        Listnener->method1();
+    }
 }

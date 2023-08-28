@@ -1,3 +1,4 @@
+#pragma once
 #include "Scene.h"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Drawable.hpp>
@@ -7,10 +8,10 @@
 #include <SFML/System.hpp>
 #include <memory>
 #include <SFML/System/Clock.hpp>
-#include "../../GameFramework/Utilities/Public/FadeTransition.h"
+// #include "../../GameFramework/Utilities/Public/FadeTransition.h"
 #include <cmath>
 #include "MathLib.h"
-//#include "EventHandler.h"
+#include "../../../EngineFramework/SubSystem/EventHandler/Public/EventHandler.h"
 #include "../../GameFramework/Input/Public/InputComponent.h"
 
 
@@ -26,6 +27,8 @@ class MainMenuScene : public Scene
 
         void RenderScene() override;
 
+        void SetupInput();
+
         sf::Texture BackgroundImage;
 
         sf::Music TitleMusic;
@@ -36,7 +39,7 @@ class MainMenuScene : public Scene
 
         sf::Sprite BackgroundSprite;
 
-        FadeTransition* FadeOut;
+        // FadeTransition* FadeOut;
 
         void StartTransition();
 
