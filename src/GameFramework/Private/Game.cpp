@@ -18,12 +18,10 @@ void GameSFML::init(const char* title, int width, int height, bool fullscreen, i
     m_window = new sf::RenderWindow(sf::VideoMode(width, height), title, flag);
     m_window->setFramerateLimit(framerate);
     m_window->setVerticalSyncEnabled(true);
-    static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->SetWindowRef(m_window);
+    WindowManager::instance().SetWindowRef(m_window);
     BaseScene = new MainMenuScene();
     BaseScene->InitScene();
-    static_cast<SceneManagerSubSystem*>(SceneManagerSubSystem::GetInstance())->SetActiveScene(BaseScene);
-
-
+    SceneManager::instance().SetActiveScene(BaseScene);
     ImGui::SFML::Init(*m_window, false);
     InitImGuiFont();
     InitDebugTools();
@@ -52,7 +50,7 @@ void GameSFML::InitDebugTools()
 void GameSFML::update()
 {
     cnt++;
-    Scene* CurrentScene = static_cast<SceneManagerSubSystem*>(SceneManagerSubSystem::GetInstance())->GetActiveScene();
+    Scene* CurrentScene = SceneManager::instance().GetActiveScene();
     if(CurrentScene)
     {
         CurrentScene->UpdateScene();
@@ -63,8 +61,9 @@ void GameSFML::render()
 {
     m_window->clear();
     ImGui::SFML::Update(*m_window, m_deltaClock->restart());
-    Scene* CurrentScene = static_cast<SceneManagerSubSystem*>(SceneManagerSubSystem::GetInstance())->GetActiveScene();
-    CurrentScene->RenderScene();
+    Scene* CurrentScene = SceneManager::instance().GetActiveScene();
+    if(CurrentScene)
+        CurrentScene->RenderScene();
     ImGui::ShowDemoWindow();
     ImGui::SFML::Render(*m_window);
     m_window->display();

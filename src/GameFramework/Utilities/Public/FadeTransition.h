@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "MathLib.h"
 #include <SFML/System/Clock.hpp>
-#include "WindowManager.h"
+//#include "WindowManager.h"
 #include <cstdlib>
 #include <SFML/System.hpp>
 #include <iostream>

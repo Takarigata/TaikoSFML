@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 #include <map>
-#include "WindowManager.h"
+#include "../../SubSystem/WindowManager/Public/WindowManager.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Clock.hpp>

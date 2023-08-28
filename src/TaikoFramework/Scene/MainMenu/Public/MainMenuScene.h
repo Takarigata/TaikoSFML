@@ -10,7 +10,7 @@
 #include "../../GameFramework/Utilities/Public/FadeTransition.h"
 #include <cmath>
 #include "MathLib.h"
-#include "EventHandler.h"
+//#include "EventHandler.h"
 #include "../../GameFramework/Input/Public/InputComponent.h"
 
 
@@ -42,7 +42,7 @@ class MainMenuScene : public Scene
 
         InputComponent* input_component;
 
-        EventHandler* eh_ref;
+        // EventHandler* eh_ref;
 
 
 

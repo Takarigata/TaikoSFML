@@ -1,13 +1,13 @@
 ﻿#pragma once
-#include "WindowManager.h"
-#include "SceneManager.h"
+// #include "WindowManager.h"
+// #include "SceneManager.h"
 #include <map>
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Clock.hpp>
 #include "imgui.h"
-#include "../Scene/Public/TestScene.h"
-#include "../Scene/Public/TestScene2.h"
+#include "../../EngineFramework/SubSystem/WindowManager/Public/WindowManager.h"
+#include "../../EngineFramework/SubSystem/SceneManager/Public/SceneManager.h"
 #include "../../TaikoFramework/Scene/MainMenu/Public/MainMenuScene.h"
 #include "imconfig-SFML.h"
 #include "imgui-SFML.h"

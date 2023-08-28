@@ -1,5 +1,7 @@
 #include "Game.h"
-#include "EngineFramework/Public/EventHandler.h"
+// #include "EngineFramework/Public/EventHandler.h"
+#include "EngineFramework/SubSystem/EventHandler/Public/EventHandler.h"
+#include "EngineFramework/SubSystem/Public/BaseSubsystem.h"
 // #include "BaseEngineSubsystem.h"
 
 GameSFML *gameSFML = nullptr;
@@ -7,6 +9,7 @@ GameSFML *gameSFML = nullptr;
 
 int main(int argc, char* argv[])
 {
+	//return 0;
 	gameSFML = new GameSFML();
 	
 	gameSFML->init("Taiko SDK", 1920 , 1080, false, 144);
@@ -15,7 +18,7 @@ int main(int argc, char* argv[])
 	while(gameSFML->running())
 	{
 		gameSFML->handleEvents();
-		EventHandler::GetInstance2()->UpdateInputEvent(gameSFML);
+		EventHandler::instance().UpdateInputEvent(gameSFML);
 		gameSFML->update();
 		gameSFML->render();
 	}

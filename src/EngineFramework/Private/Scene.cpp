@@ -3,7 +3,9 @@
 Scene::Scene()
 {
     InitScene();
-    window_ref = static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->GetWindowRef();
+    
+    // window_ref = static_cast<WindowManagerSubSystem*>(WindowManagerSubSystem::GetInstance())->GetWindowRef();
+    window_ref = WindowManager::instance().m_window;
 }
 
 Scene::~Scene()
@@ -31,6 +33,7 @@ void Scene::UpdateScene()
 {
     //printf("UPDATING SCENE \n");
     cnt++;
+
 }
 
 void Scene::RenderScene()
