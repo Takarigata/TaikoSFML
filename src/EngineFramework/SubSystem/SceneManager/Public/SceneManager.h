@@ -6,10 +6,10 @@ class SceneManager final : public BaseEngineSubSystem<SceneManager>
 {
 
 public:
-    SceneManager(token) { std::cout << "constructed Test" << std::endl; }
-    ~SceneManager() {  std::cout << "destructed Test" << std::endl; }
+    SceneManager(token) {}
+    ~SceneManager() {}
 
-    void use() const { std::cout << "in use Test" << std::endl; };
+    void use() const {};
 
     Scene* GetActiveScene();
 

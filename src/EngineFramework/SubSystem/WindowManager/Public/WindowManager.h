@@ -5,10 +5,10 @@
 class WindowManager  : public BaseEngineSubSystem<WindowManager>
 {
 public:
-    WindowManager(token) { std::cout << "constructed Test" << std::endl; }
-    ~WindowManager() {  std::cout << "destructed Test" << std::endl; }
+    WindowManager(token) {}
+    ~WindowManager() {}
 
-    void use() const { std::cout << "in use Test" << std::endl; };
+    void use() const {};
 
     void SetWindowRef(sf::RenderWindow* in_window);
     

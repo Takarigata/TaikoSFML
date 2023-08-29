@@ -12,6 +12,7 @@
 #include <cmath>
 #include "MathLib.h"
 #include "../../../EngineFramework/SubSystem/EventHandler/Public/EventHandler.h"
+#include "../../../EngineFramework/Components/AudioPlayer/Public/AudioComponent.h"
 #include "../../GameFramework/Input/Public/InputComponent.h"
 
 
@@ -46,6 +47,7 @@ class MainMenuScene : public Scene
         InputComponent* input_component;
 
         // EventHandler* eh_ref;
+        AudioComponent test;
 
 
 

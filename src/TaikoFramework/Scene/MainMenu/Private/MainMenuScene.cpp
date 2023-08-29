@@ -1,6 +1,6 @@
 #include "../Public/MainMenuScene.h"
 
-MainMenuScene::MainMenuScene()
+MainMenuScene::MainMenuScene() : test(AudioComponentSettings("Assets/SFX/don.ogg", false, 100, 0, 1))
 {
     input_component  = new InputComponent();
 }
@@ -38,6 +38,8 @@ void MainMenuScene::SetupMenuGFX()
     printf("SETUP SCENE \n");
     SetupInput();
     BackgroundSprite.setScale(targetSize.x / BackgroundSprite.getLocalBounds().width, targetSize.y / BackgroundSprite.getLocalBounds().height);
+    //bool a = test.PlaySound();
+    //printf("PLAY = %s \n", a ? "True" : "False");
     // FadeBox = sf::RectangleShape();
     // FadeBox.setSize(sf::Vector2f(120, 50));
     // FadeBox.setFillColor(sf::Color::Black);
