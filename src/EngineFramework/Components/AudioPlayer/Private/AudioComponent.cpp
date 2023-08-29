@@ -26,6 +26,7 @@ bool AudioComponent::PlaySound()
     sound.setBuffer(buffer);
     sound.setVolume(ACS.volume);
     sound.setPitch(ACS.pitch);
+    sound.setPlayingOffset(sf::seconds(ACS.offset));
     sound.setLoop(ACS.is_looping);
     sound.play();
 

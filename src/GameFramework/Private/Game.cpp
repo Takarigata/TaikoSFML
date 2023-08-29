@@ -18,6 +18,7 @@ void GameSFML::init(const char* title, int width, int height, bool fullscreen, i
     m_window = new sf::RenderWindow(sf::VideoMode(width, height), title, flag);
     m_window->setFramerateLimit(framerate);
     m_window->setVerticalSyncEnabled(true);
+    m_window->setKeyRepeatEnabled(false);
     WindowManager::instance().SetWindowRef(m_window);
     BaseScene = new MainMenuScene();
     BaseScene->InitScene();

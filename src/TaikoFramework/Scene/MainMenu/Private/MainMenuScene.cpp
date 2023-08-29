@@ -3,6 +3,7 @@
 MainMenuScene::MainMenuScene() : test(AudioComponentSettings("Assets/SFX/don.ogg", false, 100, 0, 1))
 {
     input_component  = new InputComponent();
+
 }
 
 void MainMenuScene::InitScene()
@@ -23,6 +24,10 @@ void MainMenuScene::SetupMenuGFX()
     {
 
     }
+    if(!testimage.loadFromFile("Assets/MainMenu/Entry_Bar.png"))
+    {
+
+    }
     if (!TitleMusic.openFromFile("Assets/MainMenu/Title.ogg"))
     {
 
@@ -31,21 +36,20 @@ void MainMenuScene::SetupMenuGFX()
     TitleMusic.setLoop(true);
     TitleMusic.setVolume(0);
     sf::RenderStates renderstate;
+    testsprite = sf::Sprite();
+    testsprite.setTexture(testimage);
     BackgroundSprite = sf::Sprite();
+    BackgroundImage.setSmooth(true);
     BackgroundSprite.setTexture(BackgroundImage);
     sf::Vector2f targetSize(window_ref->getView().getSize().x, window_ref->getView().getSize().y);
+    MySpriteComp = new TexturedSpriteComponent(sf::Vector2f(1, 1), "Assets/MainMenu/Entry_Bar.png");
+    MySpriteComp->GetSpriteRef().setScale(2.0f, 2.0f);
+    MySpriteComp->SetSpriteScale(sf::Vector2f(2, 2));
     
     printf("SETUP SCENE \n");
     SetupInput();
     BackgroundSprite.setScale(targetSize.x / BackgroundSprite.getLocalBounds().width, targetSize.y / BackgroundSprite.getLocalBounds().height);
-    //bool a = test.PlaySound();
-    //printf("PLAY = %s \n", a ? "True" : "False");
-    // FadeBox = sf::RectangleShape();
-    // FadeBox.setSize(sf::Vector2f(120, 50));
-    // FadeBox.setFillColor(sf::Color::Black);
-
-    // FadeBox.setScale(targetSize.x / FadeBox.getLocalBounds().width, targetSize.y / FadeBox.getLocalBounds().height);
-    // StartTransition();
+    testsprite.setScale(targetSize.x / testsprite.getLocalBounds().width, targetSize.y / testsprite.getLocalBounds().height);
 }
 
 void MainMenuScene::SetupInput()
@@ -57,14 +61,8 @@ void MainMenuScene::SetupInput()
 void MainMenuScene::RenderScene()
 {
     window_ref->draw(BackgroundSprite);
-    // if(FadeOut)
-    // {
-    //     if(FadeOut->UpdateTransition())
-    //     {
-    //         FadeOut = nullptr;
-    //     }
+    window_ref->draw(MySpriteComp->GetSpriteRef());
 
-    // }
     Scene::RenderScene();
 }
 

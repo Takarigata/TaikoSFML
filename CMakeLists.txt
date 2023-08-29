@@ -29,6 +29,7 @@ target_include_directories(TaikoSFML PRIVATE
     src/EngineFramework/SubSystem/WindowManager/Public
     src/EngineFramework/SubSystem/SceneManager/Public
     src/EngineFramework/Components/AudioPlayer/Public
+    src/EngineFramework/Components/TexturedSprite/Public
     src/EngineFramework/Components/Public
     src/TaikoFramework/Scene/MainMenu/Public
     src/GameFramework/Utilities/Public

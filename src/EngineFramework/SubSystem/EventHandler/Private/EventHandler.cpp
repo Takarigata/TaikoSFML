@@ -26,18 +26,19 @@ void EventHandler::UpdateInputEvent(GameSFML* InGame)
             {
                 InGame->SetGameRunningState(false);
             }
-            if(event.key.code == sf::Keyboard::J)
+            if(event.type == sf::Event::KeyPressed)
             {
-                SendPressed();
+                if(event.key.code == DonInput)
+                {
+                    SendDonInput();
+                }
+                if(event.key.code == KaInput)
+                {
+                    SendKaInput();
+                }
             }
-            if(event.key.code == KaInput)
-            {
-                SendKaInput();
-            }
-            if(event.key.code == DonInput)
-            {
-                SendDonInput();
-            }
+            
+            
         }
     }
     
@@ -45,7 +46,6 @@ void EventHandler::UpdateInputEvent(GameSFML* InGame)
 
 void EventHandler::SendKaInput()
 {
-    //AudioComponent Ka(AudioComponentSettings("Assets/SFX/ka.ogg", false, 100, 0, 1));
     printf("KA \n");
     Ka.PlaySound();
 
@@ -53,7 +53,6 @@ void EventHandler::SendKaInput()
 
 void EventHandler::SendDonInput()
 {
-    //AudioComponent Don(AudioComponentSettings("Assets/SFX/don.ogg", false, 100, 0, 1));
     printf("Don \n");
     Don.PlaySound();
 }

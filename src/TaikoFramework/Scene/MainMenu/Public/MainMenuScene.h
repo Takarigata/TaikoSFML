@@ -13,6 +13,7 @@
 #include "MathLib.h"
 #include "../../../EngineFramework/SubSystem/EventHandler/Public/EventHandler.h"
 #include "../../../EngineFramework/Components/AudioPlayer/Public/AudioComponent.h"
+#include "../../../EngineFramework/Components/TexturedSprite/Public/TexturedSprite.h"
 #include "../../GameFramework/Input/Public/InputComponent.h"
 
 
@@ -30,7 +31,7 @@ class MainMenuScene : public Scene
 
         void SetupInput();
 
-        sf::Texture BackgroundImage;
+        
 
         sf::Music TitleMusic;
 
@@ -38,16 +39,28 @@ class MainMenuScene : public Scene
 
         sf::RectangleShape FadeBox;
 
-        sf::Sprite BackgroundSprite;
+        
 
         // FadeTransition* FadeOut;
 
         void StartTransition();
 
         InputComponent* input_component;
-
-        // EventHandler* eh_ref;
         AudioComponent test;
+
+    protected : 
+
+        //MainMenuSprite
+
+        sf::Texture BackgroundImage;
+
+        sf::Sprite BackgroundSprite;
+
+        sf::Texture testimage;
+
+        sf::Sprite testsprite;
+
+        TexturedSpriteComponent* MySpriteComp;
 
 
 
