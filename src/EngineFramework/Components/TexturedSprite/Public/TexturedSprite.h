@@ -14,8 +14,9 @@ class TexturedSpriteComponent : public BaseComponent
 
         bool ConstructSprite(sf::Vector2f sprite_size, std::string texture_path);
 
-        sf::Texture GetSpriteTexture() { return sprite_texture; };
+        sf::Texture* GetSpriteTexture() { return &sprite_texture; };
 
+        sf::Sprite* GetSpriteRef_ptr() { return &sprite_obj; };
         sf::Sprite GetSpriteRef() { return sprite_obj; };
 
         void SetSpriteScale(sf::Vector2f new_scale);

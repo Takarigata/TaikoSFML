@@ -14,6 +14,7 @@
 #include "../../../EngineFramework/SubSystem/EventHandler/Public/EventHandler.h"
 #include "../../../EngineFramework/Components/AudioPlayer/Public/AudioComponent.h"
 #include "../../../EngineFramework/Components/TexturedSprite/Public/TexturedSprite.h"
+#include "../../../EngineFramework/Components/FadeComponent/Public/FadeComponent.h"
 #include "../../GameFramework/Input/Public/InputComponent.h"
 
 
@@ -30,6 +31,8 @@ class MainMenuScene : public Scene
         void RenderScene() override;
 
         void SetupInput();
+
+        void SetupMusic();
 
         
 
@@ -50,17 +53,11 @@ class MainMenuScene : public Scene
 
     protected : 
 
-        //MainMenuSprite
+        TexturedSpriteComponent* entry_bar_sprite;
 
-        sf::Texture BackgroundImage;
+        TexturedSpriteComponent* background_sprite_comp;
 
-        sf::Sprite BackgroundSprite;
-
-        sf::Texture testimage;
-
-        sf::Sprite testsprite;
-
-        TexturedSpriteComponent* MySpriteComp;
+        FadeComponent* fade_component;
 
 
 
