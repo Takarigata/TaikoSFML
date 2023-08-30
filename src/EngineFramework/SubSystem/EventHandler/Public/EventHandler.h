@@ -17,7 +17,7 @@ class EventHandler  : public BaseEngineSubSystem<EventHandler>
 {
 public:
     
-    EventHandler::EventHandler(token);
+    EventHandler(token);
     ~EventHandler() {}
 
     void use() const {};
