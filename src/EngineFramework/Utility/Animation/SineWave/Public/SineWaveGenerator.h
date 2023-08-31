@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/System.hpp>
+#include <cmath>
 
 class SineWaveGenerator
 {
