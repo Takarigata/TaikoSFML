@@ -13,8 +13,10 @@
 #include "MathLib.h"
 #include "../../../EngineFramework/SubSystem/EventHandler/Public/EventHandler.h"
 #include "../../../EngineFramework/Components/AudioPlayer/Public/AudioComponent.h"
+#include "../../../EngineFramework/Components/BPMSignalComponent/Public/BPMSignalComponent.h"
 #include "../../../EngineFramework/Components/TexturedSprite/Public/TexturedSprite.h"
 #include "../../../EngineFramework/Components/FadeComponent/Public/FadeComponent.h"
+#include "../../../EngineFramework/Utility/Animation/SineWave/Public/SineWaveGenerator.h"
 #include "../../GameFramework/Input/Public/InputComponent.h"
 
 
@@ -42,10 +44,6 @@ class MainMenuScene : public Scene
 
         sf::RectangleShape FadeBox;
 
-        
-
-        // FadeTransition* FadeOut;
-
         void StartTransition();
 
         InputComponent* input_component;
@@ -58,6 +56,10 @@ class MainMenuScene : public Scene
         TexturedSpriteComponent* background_sprite_comp;
 
         FadeComponent* fade_component;
+
+        BPMSignalComponent bpm_test;
+
+        SineWaveGenerator sine_wave;
 
 
 

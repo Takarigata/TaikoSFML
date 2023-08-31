@@ -51,7 +51,6 @@ bool FadeComponent::UpdateFade()
     float target_value = fade_in ? 255 : 0;
     float start_value = fade_in ? 0 : 255;
 
-    printf("TRUE TIme = %f\n", MathLib::MapRangeClamp(time, 0, fade_time, 0, 1));
     if(alpha_value >= 1)
     {
         StopFade();

@@ -12,5 +12,10 @@ float MathLib::MapRangeClamp(float in_value, float min_in_range, float max_in_ra
     return min_out_range + (max_out_range - min_out_range) * x;
 }
 
+float MathLib::Clamp(float n, float lower, float upper)
+{
+    return std::clamp(n, lower, upper);
+}
+
 MathLib::MathLib(){};
 

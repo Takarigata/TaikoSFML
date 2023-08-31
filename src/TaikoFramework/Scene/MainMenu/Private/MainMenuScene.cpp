@@ -3,6 +3,8 @@
 MainMenuScene::MainMenuScene() : test(AudioComponentSettings("Assets/SFX/don.ogg", false, 100, 0, 1))
 {
     input_component  = new InputComponent();
+    sine_wave = SineWaveGenerator(10);
+    bpm_test = BPMSignalComponent();
 
 }
 
@@ -28,7 +30,7 @@ void MainMenuScene::SetupMusic()
     }
     TitleMusic.play();
     TitleMusic.setLoop(true);
-    TitleMusic.setVolume(30);
+    TitleMusic.setVolume(0);
 }
 
 void MainMenuScene::SetupMenuGFX()
@@ -44,6 +46,8 @@ void MainMenuScene::SetupMenuGFX()
     //----------------
     fade_component = new FadeComponent(false, 3, true);
     fade_component->Fade();
+
+    sine_wave.StartClock();
 }
 
 void MainMenuScene::SetupInput()
@@ -57,6 +61,12 @@ void MainMenuScene::RenderScene()
     window_ref->draw(background_sprite_comp->GetSpriteRef());
     window_ref->draw(entry_bar_sprite->GetSpriteRef());
     window_ref->draw(fade_component->fade_sprite);
+
+    
+    float alpha = MathLib::Lerp(0, 255, MathLib::Clamp(sine_wave.GetSineValue()));
+    
+    entry_bar_sprite->GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, alpha));
+    bpm_test.TickBPMComp();
     if(fade_component->is_fading)
     {
         fade_component->UpdateFade();

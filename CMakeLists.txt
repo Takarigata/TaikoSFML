@@ -23,6 +23,7 @@ target_include_directories(TaikoSFML PRIVATE
     src/GameFramework/Public
     src/EngineFramework/Lib/Math/Public
     src/EngineFramework/Utility/Interface/Public
+    src/EngineFramework/Utility/Animation/SineWave/Public
     src/EngineFramework/Public
     src/EngineFramework/SubSystem/Public
     src/EngineFramework/SubSystem/EventHandler/Public
@@ -31,6 +32,7 @@ target_include_directories(TaikoSFML PRIVATE
     src/EngineFramework/Components/AudioPlayer/Public
     src/EngineFramework/Components/TexturedSprite/Public
     src/EngineFramework/Components/FadeComponent/Public
+    src/EngineFramework/Components/BPMSignalComponent/Public
     src/EngineFramework/Components/Public
     src/TaikoFramework/Scene/MainMenu/Public
     src/GameFramework/Utilities/Public
