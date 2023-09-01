@@ -16,8 +16,7 @@ class BPMSignalComponent : BaseComponent
 
         AudioComponent bpm_spind_comp;
 
-
-        int bpm = 180;
+        int bpm = 130;
 
         int bpm_time;
 

@@ -12,15 +12,17 @@ file(GLOB_RECURSE EXTERNALHPP "External/*.hpp")
 file(GLOB_RECURSE GAMEFRAMEWORK RELATIVE ${CMAKE_SOURCE_DIR} "src/GameFramework/*.cpp")
 file(GLOB_RECURSE ENGINERAMEWORK RELATIVE ${CMAKE_SOURCE_DIR} "src/EngineFramework/*.cpp")
 file(GLOB_RECURSE TAIKOFRAMEWORK RELATIVE ${CMAKE_SOURCE_DIR} "src/TaikoFramework/*.cpp")
+file(GLOB_RECURSE TJAPARSER RELATIVE ${CMAKE_SOURCE_DIR} "src/TJAParser/*.cpp")
 find_package(OpenGL REQUIRED)
 
-add_executable(TaikoSFML src/main.cpp ${GAMEFRAMEWORK} ${ENGINERAMEWORK} ${TAIKOFRAMEWORK} ${EXTERNALCPP} ${EXTERNALHPP})
+add_executable(TaikoSFML src/main.cpp ${GAMEFRAMEWORK} ${ENGINERAMEWORK} ${TAIKOFRAMEWORK} ${TJAPARSER} ${EXTERNALCPP} ${EXTERNALHPP})
 target_link_libraries(TaikoSFML PRIVATE sfml-graphics)
 target_link_libraries(TaikoSFML PRIVATE sfml-audio)
 target_link_libraries(TaikoSFML PRIVATE OpenGL::GL)
 target_include_directories(TaikoSFML PRIVATE
     External/imgui
     src/GameFramework/Public
+    src/TJAParser/Public
     src/EngineFramework/Lib/Math/Public
     src/EngineFramework/Utility/Interface/Public
     src/EngineFramework/Utility/Animation/SineWave/Public
