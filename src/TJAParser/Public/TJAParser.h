@@ -4,6 +4,8 @@
 #include <fstream>
 #include <codecvt>
 #include <fcntl.h>
+#include <locale>
+//#include <windows.h>
 #include <io.h>
 #include "TJAMap.h"
 
@@ -17,5 +19,5 @@ public:
 
     void use() const {};
 
-    TJAMap* ParseTJAMap(std::string file_path);
+    TJAMap* ParseTJAMap(std::string& file_path);
 };

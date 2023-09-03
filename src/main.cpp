@@ -1,15 +1,16 @@
 #include "Game.h"
-// #include "EngineFramework/Public/EventHandler.h"
 #include "EngineFramework/SubSystem/EventHandler/Public/EventHandler.h"
 #include "EngineFramework/SubSystem/Public/BaseSubsystem.h"
-// #include "BaseEngineSubsystem.h"
+#include "TJAParser/Public/TJAParser.h"
 
 GameSFML *gameSFML = nullptr;
-// BaseEngineSubsystem* Engine = nullptr;
-
 int main(int argc, char* argv[])
 {
-	//return 0;
+	std::string path = "E:/DEV/PARADOX.tja";
+	// std::string path = "E:/DEV/ボーカロイド.tja";
+	TJAParser::instance().ParseTJAMap(path);
+
+	return 0;
 	gameSFML = new GameSFML();
 	
 	gameSFML->init("Taiko SDK", 1920 , 1080, false, 144);
