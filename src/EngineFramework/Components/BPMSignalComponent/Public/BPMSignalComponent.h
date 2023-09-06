@@ -1,7 +1,10 @@
 #pragma once
 #include <SFML/System.hpp>
+#include <vector>
 #include "../Public/BaseComponent.h"
 #include "../AudioPlayer/Public/AudioComponent.h"
+#include "../../../Actor/Public/BaseActor.h"
+
 
 class BPMSignalComponent : BaseComponent
 {
@@ -16,7 +19,11 @@ class BPMSignalComponent : BaseComponent
 
         AudioComponent bpm_spind_comp;
 
-        int bpm = 130;
+        bool add_bpm_actor_listener(BaseActor* in_actor);
+
+        std::vector<BaseActor*> listening_actor;
+
+        int bpm = 160;
 
         int bpm_time;
 

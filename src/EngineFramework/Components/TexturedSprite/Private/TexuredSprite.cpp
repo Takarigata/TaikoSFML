@@ -19,6 +19,7 @@ bool TexturedSpriteComponent::ConstructSprite(sf::Vector2f sprite_size, std::str
     }
     sprite_obj = sf::Sprite();
     sprite_obj.setTexture(sprite_texture);
+    sprite_texture.setSmooth(true);
     sprite_obj.setScale(sprite_size);
     return true;
 }

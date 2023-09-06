@@ -5,6 +5,7 @@ MainMenuScene::MainMenuScene() : test(AudioComponentSettings("Assets/SFX/don.ogg
     input_component  = new InputComponent();
     sine_wave = SineWaveGenerator(10);
     bpm_test = BPMSignalComponent();
+    test_note = new TaikoNote();
 
 }
 
@@ -41,12 +42,15 @@ void MainMenuScene::SetupMenuGFX()
     background_sprite_comp->GetSpriteTexture()->setSmooth(true);
     entry_bar_sprite = new TexturedSpriteComponent(sf::Vector2f(1, 1), "Assets/MainMenu/Entry_Bar.png");
     entry_bar_sprite->GetSpriteRef_ptr()->setScale(1, 1);
+    animated_sprite_comp = new AnimatedTexturedSpriteComponent(sf::Vector2f(1, 1), "Assets/Game/Notes.png");
     sf::FloatRect SpriteBound = background_sprite_comp->GetSpriteRef().getLocalBounds();
     background_sprite_comp->GetSpriteRef_ptr()->setScale(targetSize.x / SpriteBound.width, targetSize.y / SpriteBound.height);
     //----------------
     fade_component = new FadeComponent(false, 3, true);
     fade_component->Fade();
+    animated_sprite_comp->GetSpriteRef_ptr()->setTextureRect(sf::IntRect(130, 0, 130, 130));
 
+    bpm_test.add_bpm_actor_listener(test_note);
     sine_wave.StartClock();
 }
 
@@ -61,6 +65,7 @@ void MainMenuScene::RenderScene()
     window_ref->draw(background_sprite_comp->GetSpriteRef());
     window_ref->draw(entry_bar_sprite->GetSpriteRef());
     window_ref->draw(fade_component->fade_sprite);
+    window_ref->draw(test_note->animated_textured_sprite_comp->GetSpriteRef());
 
     
     float alpha = MathLib::Lerp(0, 255, MathLib::Clamp(sine_wave.GetSineValue()));

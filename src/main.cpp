@@ -6,11 +6,11 @@
 GameSFML *gameSFML = nullptr;
 int main(int argc, char* argv[])
 {
-	std::string path = "E:/DEV/PARADOX.tja";
-	// std::string path = "E:/DEV/ボーカロイド.tja";
-	TJAParser::instance().ParseTJAMap(path);
+	// std::string path = "E:/DEV/TJADB/ESE/09 Namco Original/Aka to Shiro Bara no Majo/Aka to Shiro Bara no Majo.tja";
+	// // std::string path = "E:/DEV/ボーカロイド.tja";
+	// TJAParser::instance().ParseTJAMap(path);
 
-	return 0;
+	// return 0;
 	gameSFML = new GameSFML();
 	
 	gameSFML->init("Taiko SDK", 1920 , 1080, false, 144);

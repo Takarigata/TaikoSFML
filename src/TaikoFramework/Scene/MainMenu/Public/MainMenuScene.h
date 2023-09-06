@@ -15,9 +15,11 @@
 #include "../../../EngineFramework/Components/AudioPlayer/Public/AudioComponent.h"
 #include "../../../EngineFramework/Components/BPMSignalComponent/Public/BPMSignalComponent.h"
 #include "../../../EngineFramework/Components/TexturedSprite/Public/TexturedSprite.h"
+#include "../../../EngineFramework/Components/AnimatedTexturedSprite/Public/AnimatedTexturedSprite.h"
 #include "../../../EngineFramework/Components/FadeComponent/Public/FadeComponent.h"
 #include "../../../EngineFramework/Utility/Animation/SineWave/Public/SineWaveGenerator.h"
 #include "../../GameFramework/Input/Public/InputComponent.h"
+#include "../../TaikoFramework/Actor/Notes/Public/Note.h"
 
 
 
@@ -54,6 +56,10 @@ class MainMenuScene : public Scene
         TexturedSpriteComponent* entry_bar_sprite;
 
         TexturedSpriteComponent* background_sprite_comp;
+
+        AnimatedTexturedSpriteComponent* animated_sprite_comp;
+
+        TaikoNote* test_note;
 
         FadeComponent* fade_component;
 

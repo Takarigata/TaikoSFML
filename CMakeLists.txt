@@ -28,15 +28,18 @@ target_include_directories(TaikoSFML PRIVATE
     src/EngineFramework/Utility/Animation/SineWave/Public
     src/EngineFramework/Public
     src/EngineFramework/SubSystem/Public
+    src/EngineFramework/Actor/Public
     src/EngineFramework/SubSystem/EventHandler/Public
     src/EngineFramework/SubSystem/WindowManager/Public
     src/EngineFramework/SubSystem/SceneManager/Public
     src/EngineFramework/Components/AudioPlayer/Public
     src/EngineFramework/Components/TexturedSprite/Public
+    src/EngineFramework/Components/AnimatedTexturedSprite/Public
     src/EngineFramework/Components/FadeComponent/Public
     src/EngineFramework/Components/BPMSignalComponent/Public
     src/EngineFramework/Components/Public
     src/TaikoFramework/Scene/MainMenu/Public
+    src/TaikoFramework/Actor/Notes/Public
     src/GameFramework/Utilities/Public
     src/GameFramework/Input/Public
 )

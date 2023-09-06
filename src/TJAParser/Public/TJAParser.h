@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <locale>
 //#include <windows.h>
+#include <io.h>
 #include "TJAMap.h"
 
 

@@ -22,8 +22,23 @@ void BPMSignalComponent::TickBPMComp()
     if(bpm_clock.getElapsedTime().asMilliseconds() >= bpm_time)
     {
         printf("tick \n");
-        bpm_spind_comp.PlaySound();
+        //bpm_spind_comp.PlaySound();
+        for(auto listener : listening_actor)
+        {
+            listener->tick(1);
+        }
         bpm_clock.restart();
     }
 
+}
+
+bool BPMSignalComponent::add_bpm_actor_listener(BaseActor* in_actor)
+{
+    if(in_actor)
+    {
+        listening_actor.push_back(in_actor);
+        return true;
+    }
+    return false;
+    
 }
