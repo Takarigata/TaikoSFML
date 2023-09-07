@@ -27,6 +27,7 @@ enum note_type
     mp_don,
     mp_ka,
     mp_adlib,
+    hit,
 
     num
 };

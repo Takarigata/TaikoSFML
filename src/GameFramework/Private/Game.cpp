@@ -15,7 +15,7 @@ void GameSFML::init(const char* title, int width, int height, bool fullscreen, i
     {
         flag = 8;
     }
-    m_window = new sf::RenderWindow(sf::VideoMode(width, height), title, flag);
+    m_window = new sf::RenderWindow(sf::VideoMode(width, height), title, (sf::Style::Resize + sf::Style::Close));
     m_window->setFramerateLimit(framerate);
     m_window->setVerticalSyncEnabled(true);
     m_window->setKeyRepeatEnabled(false);

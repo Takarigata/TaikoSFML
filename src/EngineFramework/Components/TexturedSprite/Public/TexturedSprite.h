@@ -21,6 +21,8 @@ class TexturedSpriteComponent : public BaseComponent
 
         void SetSpriteScale(sf::Vector2f new_scale);
 
+        void SetSpriteOriginToCenter();
+
         sf::Texture sprite_texture;
 
         sf::Sprite sprite_obj;

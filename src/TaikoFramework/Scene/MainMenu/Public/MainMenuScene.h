@@ -61,6 +61,8 @@ class MainMenuScene : public Scene
 
         TaikoNote* test_note;
 
+        TaikoNote* hit_placement;
+
         FadeComponent* fade_component;
 
         BPMSignalComponent bpm_test;

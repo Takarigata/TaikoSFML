@@ -5,7 +5,10 @@ MainMenuScene::MainMenuScene() : test(AudioComponentSettings("Assets/SFX/don.ogg
     input_component  = new InputComponent();
     sine_wave = SineWaveGenerator(10);
     bpm_test = BPMSignalComponent();
-    test_note = new TaikoNote();
+    test_note = new TaikoNote(note_type::ka);
+    hit_placement = new TaikoNote(note_type::hit);
+    test_note->animated_textured_sprite_comp->SetSpriteOriginToCenter();
+    test_note->animated_textured_sprite_comp->GetSpriteRef_ptr()->setPosition(window_ref->getView().getSize().x / 2, window_ref->getView().getSize().y / 2);
 
 }
 
@@ -38,7 +41,7 @@ void MainMenuScene::SetupMenuGFX()
 {
     
     sf::Vector2f targetSize(window_ref->getView().getSize().x, window_ref->getView().getSize().y);
-    background_sprite_comp = new TexturedSpriteComponent(sf::Vector2f(1, 1), "Assets/MainMenu/Background.png");
+    background_sprite_comp = new TexturedSpriteComponent(sf::Vector2f(1, 1), "Assets/MainMenu/Background_grid.png");
     background_sprite_comp->GetSpriteTexture()->setSmooth(true);
     entry_bar_sprite = new TexturedSpriteComponent(sf::Vector2f(1, 1), "Assets/MainMenu/Entry_Bar.png");
     entry_bar_sprite->GetSpriteRef_ptr()->setScale(1, 1);
@@ -66,6 +69,7 @@ void MainMenuScene::RenderScene()
     window_ref->draw(entry_bar_sprite->GetSpriteRef());
     window_ref->draw(fade_component->fade_sprite);
     window_ref->draw(test_note->animated_textured_sprite_comp->GetSpriteRef());
+    //window_ref->draw(hit_placement->animated_textured_sprite_comp->GetSpriteRef());
 
     
     float alpha = MathLib::Lerp(0, 255, MathLib::Clamp(sine_wave.GetSineValue()));
