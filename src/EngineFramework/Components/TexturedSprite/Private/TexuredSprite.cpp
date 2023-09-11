@@ -27,7 +27,7 @@ bool TexturedSpriteComponent::ConstructSprite(sf::Vector2f sprite_size, std::str
 
 void TexturedSpriteComponent::SetSpriteOriginToCenter()
 {
-    sprite_obj.setOrigin(sprite_obj.getGlobalBounds().width / 2 , sprite_obj.getGlobalBounds().height / 2);
+    sprite_obj.setOrigin(sf::Vector2f(sprite_obj.getLocalBounds().width / 2, sprite_obj.getLocalBounds().height / 2));
 }
 
 void TexturedSpriteComponent::SetSpriteScale(sf::Vector2f new_scale)

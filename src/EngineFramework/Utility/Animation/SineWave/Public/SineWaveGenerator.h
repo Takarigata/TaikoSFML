@@ -19,4 +19,6 @@ class SineWaveGenerator
 
         float GetSineValue();
 
+        float GetLinearValue();
+
 };

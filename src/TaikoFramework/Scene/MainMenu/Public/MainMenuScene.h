@@ -11,6 +11,7 @@
 // #include "../../GameFramework/Utilities/Public/FadeTransition.h"
 #include <cmath>
 #include "MathLib.h"
+#include "SFMLTransformUtility.h"
 #include "../../../EngineFramework/SubSystem/EventHandler/Public/EventHandler.h"
 #include "../../../EngineFramework/Components/AudioPlayer/Public/AudioComponent.h"
 #include "../../../EngineFramework/Components/BPMSignalComponent/Public/BPMSignalComponent.h"
@@ -43,6 +44,8 @@ class MainMenuScene : public Scene
         sf::Music TitleMusic;
 
         sf::Clock clock;
+
+        sf::Clock linear_clock;
 
         sf::RectangleShape FadeBox;
 

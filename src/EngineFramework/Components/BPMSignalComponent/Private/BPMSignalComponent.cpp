@@ -25,7 +25,7 @@ void BPMSignalComponent::TickBPMComp()
         //bpm_spind_comp.PlaySound();
         for(auto listener : listening_actor)
         {
-            listener->tick(1);
+            listener->bpm_tick(1);
         }
         bpm_clock.restart();
     }

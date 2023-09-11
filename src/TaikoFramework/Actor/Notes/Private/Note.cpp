@@ -5,24 +5,36 @@ TaikoNote::TaikoNote()
     ActorName = "TaikoNote";
 
     animated_textured_sprite_comp = new AnimatedTexturedSpriteComponent(sf::Vector2f(1, 1), "Assets/Game/Notes.png");
-    animated_textured_sprite_comp->GetSpriteRef_ptr()->setScale(1.5f, 1.5f);
+    animated_textured_sprite_comp->GetSpriteRef_ptr()->setScale(1.0f, 1.0f);
     current_note_type = note_type::ka;
 }
 
-TaikoNote::TaikoNote(note_type in_note_type)
+TaikoNote::TaikoNote(note_type in_note_type, bool debug_window)
 {
     ActorName = "TaikoNote";
 
     animated_textured_sprite_comp = new AnimatedTexturedSpriteComponent(sf::Vector2f(1, 1), "Assets/Game/Notes.png");
-    animated_textured_sprite_comp->GetSpriteRef_ptr()->setScale(1.5f, 1.5f);
+    animated_textured_sprite_comp->GetSpriteRef_ptr()->setScale(1.0f, 1.0f);
     current_note_type = in_note_type;
+    debug_imgui = debug_window;
+    if(debug_window)
+    {
+        sf::RenderWindow* test = WindowManager::instance().m_window;
+        ImGui::SFML::Init(*test, false);
+        ImGuiIO& IO = ImGui::GetIO();
+        IO.Fonts->Clear();
+        IO.Fonts->AddFontFromFileTTF("Assets/Fonts/DFPKanteiryu-XB.ttf", 8.f, NULL, IO.Fonts->GetGlyphRangesJapanese());
+
+        ImGui::SFML::UpdateFontTexture();
+        m_deltaClock = sf::Clock();
+    }
 }
 
-void TaikoNote::tick(float elapsed_time)
+void TaikoNote::bpm_tick(float elapsed_time)
 {
-    printf("TICK NOTE \n");
     animated_textured_sprite_comp->GetSpriteRef_ptr()->setTextureRect(get_note_rec_value());
     animated_textured_sprite_comp->SetSpriteOriginToCenter();
+
     // if(mouth_open)
     // {
     //     animated_textured_sprite_comp->GetSpriteRef_ptr()->setTextureRect(get_note_rec_value());
@@ -33,6 +45,31 @@ void TaikoNote::tick(float elapsed_time)
     //     animated_textured_sprite_comp->GetSpriteRef_ptr()->setTextureRect(get_note_rec_value());
     //     mouth_open = true;
     // }
+}
+
+void TaikoNote::tick(float elapsed_time)
+{
+    //597 404
+    if(debug_imgui)
+    {
+        sf::RenderWindow* test = WindowManager::instance().m_window;
+        ImGui::SFML::Update(*test, m_deltaClock.restart());
+        ImGui::ShowDemoWindow();
+       if (ImGui::Begin("Sprite Debug Win"))
+       {
+
+            if(ImGui::SliderFloat2("Sprite pos", sprite_pos, 0, 1920))
+            {
+                printf("VALUE = %f %f \n", sprite_pos[0], sprite_pos[1]);
+                animated_textured_sprite_comp->GetSpriteRef_ptr()->setPosition(sf::Vector2(sprite_pos[0], sprite_pos[1]));
+            }
+            
+       }
+        
+        ImGui::End();
+        ImGui::SFML::Render(*test);
+    }
+    
 }
 
 sf::IntRect TaikoNote::get_note_rec_value()
@@ -57,5 +94,5 @@ sf::IntRect TaikoNote::get_note_rec_value()
     default:
         break;
     }
-    
+    return sf::IntRect(0, 0, 130, 130);
 }
