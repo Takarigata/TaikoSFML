@@ -8,6 +8,7 @@
 #include "imgui.h"
 #include "../../EngineFramework/SubSystem/WindowManager/Public/WindowManager.h"
 #include "../../EngineFramework/SubSystem/SceneManager/Public/SceneManager.h"
+#include "../../EngineFramework/SubSystem/DebugManager/Public/DebugManager.h"
 #include "../../TaikoFramework/Scene/MainMenu/Public/MainMenuScene.h"
 #include "imconfig-SFML.h"
 #include "imgui-SFML.h"

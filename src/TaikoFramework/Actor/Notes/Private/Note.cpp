@@ -26,7 +26,6 @@ TaikoNote::TaikoNote(note_type in_note_type, bool debug_window)
         IO.Fonts->AddFontFromFileTTF("Assets/Fonts/DFPKanteiryu-XB.ttf", 8.f, NULL, IO.Fonts->GetGlyphRangesJapanese());
 
         ImGui::SFML::UpdateFontTexture();
-        m_deltaClock = sf::Clock();
     }
 }
 
@@ -53,8 +52,8 @@ void TaikoNote::tick(float elapsed_time)
     if(debug_imgui)
     {
         sf::RenderWindow* test = WindowManager::instance().m_window;
-        ImGui::SFML::Update(*test, m_deltaClock.restart());
-        ImGui::ShowDemoWindow();
+        ImGui::SFML::Update(*test, WindowManager::instance()._clock->restart());
+        //ImGui::ShowDemoWindow();
        if (ImGui::Begin("Sprite Debug Win"))
        {
 

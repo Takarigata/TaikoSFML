@@ -25,6 +25,7 @@ target_include_directories(TaikoSFML PRIVATE
     src/TJAParser/Public
     src/EngineFramework/Lib/Math/Public
     src/EngineFramework/Utility/Interface/Public
+    src/EngineFramework/Utility/ImGUIDebug/Public
     src/EngineFramework/Utility/Animation/SineWave/Public
     src/EngineFramework/Public
     src/EngineFramework/SubSystem/Public
@@ -32,6 +33,7 @@ target_include_directories(TaikoSFML PRIVATE
     src/EngineFramework/SubSystem/EventHandler/Public
     src/EngineFramework/SubSystem/WindowManager/Public
     src/EngineFramework/SubSystem/SceneManager/Public
+    src/EngineFramework/SubSystem/DebugManager/Public
     src/EngineFramework/Components/AudioPlayer/Public
     src/EngineFramework/Components/TexturedSprite/Public
     src/EngineFramework/Components/AnimatedTexturedSprite/Public

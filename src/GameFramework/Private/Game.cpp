@@ -23,10 +23,10 @@ void GameSFML::init(const char* title, int width, int height, bool fullscreen, i
     BaseScene = new MainMenuScene();
     BaseScene->InitScene();
     SceneManager::instance().SetActiveScene(BaseScene);
-    // ImGui::SFML::Init(*m_window, false);
-    InitImGuiFont();
     InitDebugTools();
+    
     m_deltaClock = new sf::Clock();
+    WindowManager::instance().SetGameClock(m_deltaClock);
     
     if(m_window)
     {
@@ -34,18 +34,10 @@ void GameSFML::init(const char* title, int width, int height, bool fullscreen, i
     }
 }
 
-void GameSFML::InitImGuiFont()
-{
-    // ImGuiIO& IO = ImGui::GetIO();
-    // IO.Fonts->Clear();
-    // IO.Fonts->AddFontFromFileTTF("Assets/Fonts/DFPKanteiryu-XB.ttf", 8.f, NULL, IO.Fonts->GetGlyphRangesJapanese());
-
-    // ImGui::SFML::UpdateFontTexture();
-}
 
 void GameSFML::InitDebugTools()
 {
-
+    DebugManager::instance().init_imgui();
 }
 
 void GameSFML::update()
@@ -61,12 +53,10 @@ void GameSFML::update()
 void GameSFML::render()
 {
     m_window->clear();
-    // ImGui::SFML::Update(*m_window, m_deltaClock->restart());
     Scene* CurrentScene = SceneManager::instance().GetActiveScene();
     if(CurrentScene)
         CurrentScene->RenderScene();
-    // ImGui::ShowDemoWindow();
-    // ImGui::SFML::Render(*m_window);
+    DebugManager::instance().render_imgui();
     m_window->display();
 }
 
