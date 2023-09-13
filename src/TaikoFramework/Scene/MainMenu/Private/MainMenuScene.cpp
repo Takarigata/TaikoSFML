@@ -4,9 +4,9 @@ MainMenuScene::MainMenuScene() : test(AudioComponentSettings("Assets/SFX/don.ogg
 {
     input_component  = new InputComponent();
     linear_clock = sf::Clock();
-    sine_wave = SineWaveGenerator(3);
+    sine_wave = SineWaveGenerator(10);
     bpm_test = BPMSignalComponent();
-    test_note = new TaikoNote(note_type::ka);
+    test_note = new TaikoNote(note_type::ka, SFMLTransformLib::CalculateScreenPos(0.95f, 0.38f), SFMLTransformLib::CalculateScreenPos(0.3f, 0.38f));
     hit_placement = new TaikoNote(note_type::hit);
     hit_placement->animated_textured_sprite_comp->GetSpriteRef_ptr()->setPosition(SFMLTransformLib::CalculateScreenPos(0.3f, 0.38f));
     test_note->animated_textured_sprite_comp->SetSpriteOriginToCenter();
@@ -70,15 +70,16 @@ void MainMenuScene::SetupInput()
 void MainMenuScene::RenderScene()
 {
     window_ref->draw(background_sprite_comp->GetSpriteRef());
-    window_ref->draw(test_note->animated_textured_sprite_comp->GetSpriteRef());
+    if(test_note)
+    {
+        window_ref->draw(test_note->animated_textured_sprite_comp->GetSpriteRef());
+    }
     window_ref->draw(hit_placement->animated_textured_sprite_comp->GetSpriteRef());
-    hit_placement->tick(1);
+    test_note->tick(1);
 
     
     float alpha = MathLib::Lerp(0, 255, MathLib::Clamp(sine_wave.GetSineValue()));
     
-    sf::Vector2f new_pos = MathLib::InterpVector2(SFMLTransformLib::CalculateScreenPos(0.3f, 0.38f), SFMLTransformLib::CalculateScreenPos(0.95f, 0.38f), sine_wave.GetLinearValue());
-    test_note->animated_textured_sprite_comp->GetSpriteRef_ptr()->setPosition(new_pos);
 
     entry_bar_sprite->GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, alpha));
     bpm_test.TickBPMComp();

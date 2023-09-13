@@ -21,7 +21,6 @@ void BPMSignalComponent::TickBPMComp()
     //printf("clock time = %d \n", bpm_clock.getElapsedTime().asMilliseconds());
     if(bpm_clock.getElapsedTime().asMilliseconds() >= bpm_time)
     {
-        printf("tick \n");
         //bpm_spind_comp.PlaySound();
         for(auto listener : listening_actor)
         {

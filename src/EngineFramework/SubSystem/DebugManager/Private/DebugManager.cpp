@@ -16,7 +16,7 @@ void DebugManager::init_imgui()
 
 void DebugManager::render_imgui()
 {
-    printf("Render \n");
+    //printf("Render \n");
     ImGui::SFML::Update(*WindowManager::instance().m_window, WindowManager::instance()._clock->restart());
     ImGui::ShowDemoWindow();
     for(auto current_debug_window : debug_window)

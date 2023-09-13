@@ -30,6 +30,7 @@ float SineWaveGenerator::GetLinearValue()
     float time = sine_clock.getElapsedTime().asSeconds();
     float period = amplitude;
     out_value = fmod(time, period) / period;
+    return out_value;
     if (out_value < 0.5f)
         out_value *= 2.0f;
     else

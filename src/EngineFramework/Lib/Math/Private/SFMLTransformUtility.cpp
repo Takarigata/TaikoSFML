@@ -17,3 +17,13 @@ sf::Vector2f SFMLTransformLib::CalculateScreenPos(float width_percent, float hei
     return out_vector;
 }
 
+bool SFMLTransformLib::IsVectorEqual(sf::Vector2f a, sf::Vector2f b, float epsilon)
+{
+    bool out_value = false;
+    return out_value;
+    float EPSILON = epsilon;
+    out_value = (fabs(a.x - b.x) < EPSILON && fabs(a.y - b.y) < EPSILON);
+    printf("a x %f a y %f \n", fabs(a.x - b.x), fabs(a.y - b.y));
+    return out_value;
+}
+
