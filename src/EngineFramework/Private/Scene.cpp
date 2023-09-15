@@ -38,17 +38,30 @@ void Scene::UpdateScene()
 
 void Scene::RenderScene()
 {
-    // std::vector<sf::Drawable> key;
-    // std::vector<sf::RenderStates> value;
-    // for(std::map<sf::Drawable, sf::RenderStates>::iterator it = ObjectsToDraw.begin(); it != ObjectsToDraw.end(); ++it) {
-    //     key.push_back(it->first);
-    //     value.push_back(it->second);
-    // }
-    // for(auto& ObjectToDraw : key)
-    // {
-    //     if(window_ref)
-    //         window_ref->draw(ObjectToDraw, ObjectsToDraw[ObjectToDraw]);
-    //     else
-    //         printf("NO WINDOW REF \n");
-    // }
+    //printf("RENDER PARENT \n");
+
+
+    //BACKGROUND OBJ
+    for(auto background_obj : background_layer)
+    {
+        window_ref->draw(background_obj);
+    }
+
+    //Game OBJ
+    for(auto game_obj : game_layer)
+    {
+        window_ref->draw(game_obj);
+    }
+
+    //FOREGROUND OBJ
+    for(auto foreground_obj : foreground_layer)
+    {
+        window_ref->draw(foreground_obj);
+    }
+
+    //UI OBJ
+    for(auto ui_obj : ui_layer)
+    {
+        window_ref->draw(ui_obj);
+    }
 }

@@ -10,6 +10,7 @@
 #include "../../EngineFramework/SubSystem/SceneManager/Public/SceneManager.h"
 #include "../../EngineFramework/SubSystem/DebugManager/Public/DebugManager.h"
 #include "../../TaikoFramework/Scene/MainMenu/Public/MainMenuScene.h"
+#include "../../TaikoFramework/Scene/GameScene/Public/GameScene.h"
 #include "imconfig-SFML.h"
 #include "imgui-SFML.h"
 

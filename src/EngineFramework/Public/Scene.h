@@ -3,10 +3,24 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <vector>
 #include "../../SubSystem/WindowManager/Public/WindowManager.h"
+#include "SFMLTransformUtility.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Clock.hpp>
+
+// struct RenderableObject
+// {
+//     int z_order;
+//     sf::Drawable* drawable;
+
+//     RenderableObject(int in_order, sf::Drawable* in_sprite)
+//     {
+//         z_order = in_order;
+//         drawable = in_sprite;
+//     }
+// };
 
 class Scene
 {
@@ -26,9 +40,13 @@ class Scene
 
         std::string SceneName = "BaseScene";
 
-        // std::map<sf::Drawable, sf::RenderStates> ObjectsToDraw;
-        // sf::CircleShape* shape;
-        // sf::Font* font;
+        std::vector<sf::Sprite> background_layer;
+
+        std::vector<sf::Sprite> game_layer;
+
+        std::vector<sf::Sprite> foreground_layer;
+
+        std::vector<sf::Sprite> ui_layer;
 
     protected:
 

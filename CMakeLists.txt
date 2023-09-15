@@ -41,6 +41,7 @@ target_include_directories(TaikoSFML PRIVATE
     src/EngineFramework/Components/BPMSignalComponent/Public
     src/EngineFramework/Components/Public
     src/TaikoFramework/Scene/MainMenu/Public
+    src/TaikoFramework/Scene/GameScene/Public
     src/TaikoFramework/Actor/Notes/Public
     src/GameFramework/Utilities/Public
     src/GameFramework/Input/Public

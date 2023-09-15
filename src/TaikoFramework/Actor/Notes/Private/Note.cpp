@@ -35,7 +35,7 @@ void TaikoNote::bpm_tick(float elapsed_time)
 
 void TaikoNote::tick(float elapsed_time)
 {
-    if(current_note_type != note_type::blank && current_note_type != note_type::hit && note_time - m_deltaClock.getElapsedTime().asSeconds() >= 0.01f)
+    if(current_note_type != note_type::blank && current_note_type != note_type::hit && note_time - m_deltaClock.getElapsedTime().asSeconds() >= 0.00001f)
     {
         sf::Vector2f new_pos = MathLib::InterpVector2(start_position, end_position, MathLib::MapRangeClamp(m_deltaClock.getElapsedTime().asSeconds(), 0, note_time, 0, 1));
         animated_textured_sprite_comp->GetSpriteRef_ptr()->setPosition(new_pos);
