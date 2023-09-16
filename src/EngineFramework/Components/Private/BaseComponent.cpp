@@ -1,5 +1,8 @@
 #include "../Public/BaseComponent.h"
 
-BaseComponent::BaseComponent(){}
+BaseComponent::BaseComponent()
+{
+    component_name = "BaseComp";
+}
 
 BaseComponent::~BaseComponent(){}

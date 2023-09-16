@@ -26,6 +26,7 @@ target_include_directories(TaikoSFML PRIVATE
     src/EngineFramework/Lib/Math/Public
     src/EngineFramework/Utility/Interface/Public
     src/EngineFramework/Utility/ImGUIDebug/Public
+    src/EngineFramework/Utility/ImGUIDebug/SpritePosDebug/Public
     src/EngineFramework/Utility/Animation/SineWave/Public
     src/EngineFramework/Public
     src/EngineFramework/SubSystem/Public

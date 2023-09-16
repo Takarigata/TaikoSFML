@@ -40,13 +40,13 @@ class Scene
 
         std::string SceneName = "BaseScene";
 
-        std::vector<sf::Sprite> background_layer;
+        std::vector<sf::Sprite*> background_layer;
 
-        std::vector<sf::Sprite> game_layer;
+        std::vector<sf::Sprite*> game_layer;
 
-        std::vector<sf::Sprite> foreground_layer;
+        std::vector<sf::Sprite*> foreground_layer;
 
-        std::vector<sf::Sprite> ui_layer;
+        std::vector<sf::Sprite*> ui_layer;
 
     protected:
 

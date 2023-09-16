@@ -5,6 +5,7 @@ DebugManager::DebugManager(token) : BaseEngineSubSystem<DebugManager>()
 {
 
 }
+
 void DebugManager::init_imgui()
 {
     ImGui::SFML::Init(*WindowManager::instance().m_window, false);
@@ -16,7 +17,6 @@ void DebugManager::init_imgui()
 
 void DebugManager::render_imgui()
 {
-    //printf("Render \n");
     ImGui::SFML::Update(*WindowManager::instance().m_window, WindowManager::instance()._clock->restart());
     ImGui::ShowDemoWindow();
     for(auto current_debug_window : debug_window)
@@ -52,7 +52,7 @@ bool DebugManager::remove_debug_window(BaseImGUIDebugWindow* in_debug_window)
 
 void TestImGUIDebug::RenderDebugWindow()
 {
-     if (ImGui::Begin(" SPRITE"))
+     if (ImGui::Begin(" 222"))
        {
             if(ImGui::SliderFloat2("Sprite pos", sprite_pos, 0, 1920))
             {

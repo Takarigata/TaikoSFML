@@ -17,6 +17,19 @@ sf::Vector2f SFMLTransformLib::CalculateScreenPos(float width_percent, float hei
     return out_vector;
 }
 
+sf::Vector2f SFMLTransformLib::WorldPosToScreenPos(sf::Vector2f in_position)
+{
+    sf::Vector2f out_vector;
+    sf::RenderWindow* _window = WindowManager::instance().m_window;
+    if(_window)
+    {
+        out_vector.x = in_position.x / _window->getView().getSize().x;
+        out_vector.y = in_position.y / _window->getView().getSize().y;
+    }
+
+    return out_vector;
+}
+
 bool SFMLTransformLib::IsVectorEqual(sf::Vector2f a, sf::Vector2f b, float epsilon)
 {
     bool out_value = false;

@@ -15,6 +15,8 @@ class SFMLTransformLib
 
         static sf::Vector2f CalculateScreenPos(float width_percent, float height_percent);
 
+        static sf::Vector2f WorldPosToScreenPos(sf::Vector2f in_position);
+
         static bool IsVectorEqual(sf::Vector2f a, sf::Vector2f b, float epsilon = 1.0f);
 
 };

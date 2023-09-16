@@ -7,6 +7,8 @@ class BaseComponent
         BaseComponent();
         ~BaseComponent();
 
+        std::string component_name;
+
         
 
 };
