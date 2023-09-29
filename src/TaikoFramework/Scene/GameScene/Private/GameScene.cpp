@@ -55,10 +55,12 @@ void GameScene::InitScene()
     don_sprite = new TexturedSpriteComponent(sf::Vector2f(1.5f, 1.5f), "Assets/Game/Don.png", "Don");
     don_sprite->SetSpriteOriginToCenter();
     don_sprite->GetSpriteRef_ptr()->setPosition(SFMLTransformLib::CalculateScreenPos(0.205f, 0.375f));
+    don_sprite->GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, 0));
 
     ka_sprite = new TexturedSpriteComponent(sf::Vector2f(1.5f, 1.5f), "Assets/Game/Ka.png", "Ka");
     ka_sprite->SetSpriteOriginToCenter();
     ka_sprite->GetSpriteRef_ptr()->setPosition(SFMLTransformLib::CalculateScreenPos(0.205f, 0.375f));
+    ka_sprite->GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, 0));
 
     //BACKGROUND SPRITE
     background_layer.push_back(header_background->GetSpriteRef_ptr());

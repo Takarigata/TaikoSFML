@@ -6,9 +6,9 @@
 GameSFML *gameSFML = nullptr;
 int main(int argc, char* argv[])
 {
-	// std::string path = "E:/DEV/TJADB/ESE/09 Namco Original/Aka to Shiro Bara no Majo/Aka to Shiro Bara no Majo.tja";
-	// // std::string path = "E:/DEV/ボーカロイド.tja";
-	// TJAParser::instance().ParseTJAMap(path);
+	std::string path = "E:\\DEV\\TJADB\\ESE\\07 Game Music\\Hopes and Dreams\\Hopes and Dreams.tja";
+	// std::string path = "E:/DEV/ボーカロイド.tja";
+	TJAMap* map = TJAParser::instance().ParseTJAMap(path);
 
 	// return 0;
 	gameSFML = new GameSFML();

@@ -3,6 +3,7 @@
 #include <string>
 #include "TJACourse.h"
 
+
 using namespace std;
 class TJAMap 
 {
@@ -10,27 +11,31 @@ class TJAMap
         TJAMap(){}
         ~TJAMap(){}
 
-        vector<TJACourse> map_courses;
+        vector<std::wstring> raw_map_data;
+
+        void parse_raw_mapdata();
+
+        vector<TJACourse*> map_courses;
 
         //Metadata
-        string map_title;
-        string map_subtitle;
-        int bpm;
-        string wave;
+        wstring map_title;
+        wstring map_subtitle;
+        float bpm;
+        wstring wave;
         float offset;
         float demo_start;
-        string genre;
+        wstring genre;
         int scoremode;
-        string maker;
-        string lyrics;
+        wstring maker;
+        wstring lyrics;
         float song_vol;
         float se_vol;
         int side;
         int life;
-        string game;
+        wstring game;
         float head_scroll;
-        string bg_movie;
+        wstring bg_movie;
         float movie_offset;
-        string taiko_web_skin;
+        wstring taiko_web_skin;
 
 };

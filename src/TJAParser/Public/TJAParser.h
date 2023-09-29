@@ -20,4 +20,6 @@ public:
     void use() const {};
 
     TJAMap* ParseTJAMap(std::string& file_path);
+
+    map_difficulty parse_wstring_diff(std::wstring in_diff);
 };

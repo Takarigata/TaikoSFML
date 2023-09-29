@@ -11,13 +11,14 @@ class TJACourse
         ~TJACourse(){}
 
         //Metadata
-        map_difficulty course_dif;
+        map_difficulty course_dif = map_difficulty::undefined;
+        int level;
         vector<int> balloon;
         int score_init;
         int score_diff;
 
         //Map Data
-        vector<string> map_data;
+        vector<wstring> map_data;
 
 
 

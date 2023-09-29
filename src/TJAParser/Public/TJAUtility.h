@@ -2,6 +2,7 @@
 
 enum map_difficulty 
 {
+    undefined,
     easy,
     normal,
     hard,

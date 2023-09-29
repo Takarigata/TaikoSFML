@@ -1,5 +1,5 @@
 #include "../Public/TJAParser.h"
-//#pragma execution_character_set( "utf-8" )
+
 TJAMap* TJAParser::ParseTJAMap(std::string& file_path)
 {
     
@@ -22,6 +22,7 @@ TJAMap* TJAParser::ParseTJAMap(std::string& file_path)
     std::wstring line;
     while (std::getline(file, line)) {
         lines.push_back(line);
+        out->raw_map_data.push_back(line);
     }
 
     // Now you have your Shift-JIS encoded file contents in 'lines'
@@ -29,10 +30,35 @@ TJAMap* TJAParser::ParseTJAMap(std::string& file_path)
     // Remember to close the file when done
     file.close();
 
-    // You can access the lines as needed
-    for (const std::wstring& s : lines) {
-        std::wcout << s << std::endl;
+    out->parse_raw_mapdata();
+    return out;
+}
+
+map_difficulty TJAParser::parse_wstring_diff(std::wstring in_diff)
+{
+    if(in_diff == L"Easy" || in_diff == L"0")
+    {
+        return map_difficulty::easy;
     }
 
-    return out;
+    if(in_diff == L"Normal" || in_diff == L"1")
+    {
+        return map_difficulty::normal;
+    }
+
+    if(in_diff == L"Hard" || in_diff == L"2")
+    {
+        return map_difficulty::hard;
+    }
+
+    if(in_diff == L"Oni" || in_diff == L"3")
+    {
+        return map_difficulty::oni;
+    }
+
+    if(in_diff == L"Edit" || in_diff == L"4" || in_diff == L"Ura")
+    {
+        return map_difficulty::tower;
+    }
+    return map_difficulty::undefined;
 }
