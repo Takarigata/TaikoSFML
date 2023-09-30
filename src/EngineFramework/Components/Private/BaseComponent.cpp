@@ -6,3 +6,8 @@ BaseComponent::BaseComponent()
 }
 
 BaseComponent::~BaseComponent(){}
+
+void BaseComponent::tick(float elapsed_time)
+{
+
+}

@@ -44,25 +44,29 @@ void Scene::RenderScene()
     //BACKGROUND OBJ
     for(auto background_obj : background_layer)
     {
-        window_ref->draw(*background_obj);
+        if(background_obj != nullptr)
+            window_ref->draw(*background_obj);
     }
 
 
     //Game OBJ
     for(auto game_obj : game_layer)
     {
-        window_ref->draw(*game_obj);
+        if(game_obj != nullptr)
+            window_ref->draw(*game_obj);
     }
 
     //FOREGROUND OBJ
     for(auto foreground_obj : foreground_layer)
     {
-        window_ref->draw(*foreground_obj);
+        if(foreground_obj != nullptr)
+            window_ref->draw(*foreground_obj);
     }
 
     //UI OBJ
     for(auto ui_obj : ui_layer)
     {
-        window_ref->draw(*ui_obj);
+        if(ui_obj != nullptr)
+            window_ref->draw(*ui_obj);
     }
 }

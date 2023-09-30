@@ -9,3 +9,8 @@ AnimatedTexturedSpriteComponent::~AnimatedTexturedSpriteComponent()
 {
     
 }
+
+void AnimatedTexturedSpriteComponent::tick(float elapsed_time)
+{
+    
+}

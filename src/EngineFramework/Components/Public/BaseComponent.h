@@ -7,8 +7,8 @@ class BaseComponent
         BaseComponent();
         ~BaseComponent();
 
-        std::string component_name;
+        virtual void tick(float elapsed_time);
 
-        
+        std::string component_name;
 
 };

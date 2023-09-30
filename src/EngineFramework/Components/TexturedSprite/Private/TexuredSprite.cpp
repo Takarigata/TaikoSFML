@@ -35,3 +35,8 @@ void TexturedSpriteComponent::SetSpriteScale(sf::Vector2f new_scale)
 {
     sprite_obj->setScale(new_scale);
 }
+
+void TexturedSpriteComponent::tick(float elapsed_time)
+{
+    
+}

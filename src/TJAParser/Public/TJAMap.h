@@ -4,6 +4,15 @@
 #include "TJACourse.h"
 
 
+struct note_timing  
+{
+    float note_time;
+    note_type current_note_type;
+    int note_count;
+
+};
+
+
 using namespace std;
 class TJAMap 
 {
@@ -15,7 +24,13 @@ class TJAMap
 
         void parse_raw_mapdata();
 
+        void parse_diff(map_difficulty diff_to_parse);
+
         vector<TJACourse*> map_courses;
+        
+        vector<note_timing> current_note_vector;
+
+
 
         //Metadata
         wstring map_title;

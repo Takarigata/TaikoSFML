@@ -38,3 +38,8 @@ void  AudioComponent::StopSound()
     sound.stop();
     delete this;
 }
+
+void AudioComponent::tick(float elapsed_time)
+{
+    
+}

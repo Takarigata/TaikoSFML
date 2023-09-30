@@ -59,3 +59,8 @@ bool FadeComponent::UpdateFade()
     fade_sprite.setFillColor(sf::Color(0, 0, 0, MathLib::Lerp(start_value, target_value, alpha_value)));
     return false;
 }
+
+void FadeComponent::tick(float elapsed_time)
+{
+    
+}

@@ -21,5 +21,7 @@ public:
 
     TJAMap* ParseTJAMap(std::string& file_path);
 
+    TJAMap* DebugMap = nullptr;
+
     map_difficulty parse_wstring_diff(std::wstring in_diff);
 };

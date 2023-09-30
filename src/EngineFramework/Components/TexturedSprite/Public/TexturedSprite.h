@@ -12,6 +12,8 @@ class TexturedSpriteComponent : public BaseComponent
         TexturedSpriteComponent(sf::Vector2f sprite_size, std::string texture_path, std::string in_comp_name = "Texture Sprite Comp");
         ~TexturedSpriteComponent();
 
+        void tick(float elapsed_time) override;
+
         bool ConstructSprite(sf::Vector2f sprite_size, std::string texture_path);
 
         sf::Texture* GetSpriteTexture() { return sprite_texture; };
@@ -27,10 +29,5 @@ class TexturedSpriteComponent : public BaseComponent
 
         sf::Sprite* sprite_obj;
 
-
-    protected : 
-
         
-
-
 };

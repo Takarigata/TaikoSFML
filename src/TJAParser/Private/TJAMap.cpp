@@ -251,17 +251,131 @@ void TJAMap::parse_raw_mapdata()
                 is_parsing_a_course = false;
                 current_course->map_data.push_back(line.c_str());
                 map_courses.push_back(current_course);
-                current_course = nullptr;
-                
+                current_course = nullptr;   
             }
 
             if(is_parsing_course_data)
             {
-                //wprintf(L"Data =  %s \n", line.c_str());
                 current_course->map_data.push_back(line.c_str());
             }
         }
     }
+}
+
+float calculate_measure(float part, float beat)
+{
+    return (part / beat);
+}
+
+note_type parse_note_type(wstring in_note)
+{
+    if(in_note == L"1")
+    {
+        return note_type::don;
+    }
+
+    if(in_note == L"2")
+    {
+        return note_type::ka;
+    }
+
+    if(in_note == L"3")
+    {
+        return note_type::big_don;
+    }
+
+    if(in_note == L"4")
+    {
+        return note_type::big_ka;
+    }
+    return note_type::blank;
+}
+void TJAMap::parse_diff(map_difficulty diff_to_parse)
+{
+    float part = 4;
+    float beat  = 4;
+    float globaltime = 0;
+    int current_note_count = 0;
+    for(auto diff : map_courses)
+    {
+        if(diff_to_parse == diff->course_dif)
+        {
+            for(auto tmp_course_data : diff->map_data)
+            {
+                wstring course_data = tmp_course_data.c_str();
+
+
+                printf("PARSING NEW LINE  ----------- \n");
+                
+                if(course_data.find(L'#') == -1 && course_data.find(L',') != -1)
+                {
+                    //course_data.erase(remove(course_data.begin(), course_data.end(), L','), course_data.end());
+                    wprintf(L"SELECTED NOTE Raw Data =  %s \n", course_data.c_str());
+                    int postest = course_data.find(L",");
+                    course_data = course_data.substr(0, postest).c_str();
+                     wprintf(L"SELECTED NOTE  Data =  %s \n", course_data.c_str());
+                    float current_measure = 60000 * calculate_measure(part, beat) * (4 / (bpm ));
+                    globaltime += current_measure;
+
+                    if(course_data.length() > 0)
+                    {
+                        std::vector<std::wstring> characterArray;
+                        for (wchar_t character : course_data) 
+                        {
+                            std::wstring singleChar(1, character);
+                            characterArray.push_back(singleChar);
+                        }
+
+                        for(int i = 0; i < characterArray.size() - 1; i++)
+                        {
+                            wstring character = characterArray[i];
+                            //wprintf(L"Character: %s\n", character.c_str());
+                            if(character == L"1" || character == L"2" || character == L"3" || character == L"4")
+                            {
+                                note_timing current_note;
+                                current_note.note_time = ((offset * 1000) * (- 1) + globaltime + ((current_measure / characterArray.size()) * (i + 1)));
+                                current_note.current_note_type = parse_note_type(character);
+                                current_note.note_count = current_note_count;
+                                current_note_count++;
+                                //wprintf(L"NOTE ENUM = : %d \n", current_note.current_note_type);
+                                current_note_vector.push_back(current_note);
+                            }
+                        }
+                    }
+                    
+                    wprintf(L"SELECTED NOTE Data =  %s And LEN = %d  and measure time = %f global = %f\n", course_data.c_str(), course_data.length(), current_measure, globaltime);
+                }
+                else
+                {
+                    if(course_data.find(L"#MEASURE") != -1)
+                    {
+                        course_data.erase(0, 9);
+                        vector<wstring> result = explode(course_data, '/');
+                        for(auto explo : result)
+                        {
+                            wprintf(L"RESULT =  %s len = %d \n", explo.c_str(), explo.length());
+                        }
+                        part = (float) _wtof(result[0].c_str());
+                        beat = (float) _wtof(result[1].c_str());
+                        wprintf(L"NEW MEASURE =  %f / %f \n", part, beat);
+                    }
+
+                    if(course_data.find(L"#BPMCHANGE") != -1)
+                    {
+                        course_data.erase(0, 11);
+                        bpm = (float) _wtof(course_data.c_str());
+                        wprintf(L"NEWBPM =  %f \n", bpm);
+                        //139000
+                        //126 000
+                        // 2 min 19
+                        // 2 min 03
+                    }
+                }
+            }
+        }
+    }
+    wprintf(L"END TIMER =  %f \n", globaltime);
+
 }
 
 

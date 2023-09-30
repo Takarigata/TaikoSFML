@@ -15,6 +15,8 @@ class FadeComponent : BaseComponent
         FadeComponent();
         ~FadeComponent();
 
+        void tick(float elapsed_time) override;
+
         sf::RectangleShape* GetSpriteRef_ptr() { return &fade_sprite; };
 
         void ConstructSprite();

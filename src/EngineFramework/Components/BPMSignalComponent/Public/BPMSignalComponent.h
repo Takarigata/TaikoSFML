@@ -11,6 +11,7 @@ class BPMSignalComponent : BaseComponent
     public:
 
         BPMSignalComponent();
+        BPMSignalComponent(int in_bpm);
         ~BPMSignalComponent();
 
         AudioComponent AP;
@@ -32,5 +33,7 @@ class BPMSignalComponent : BaseComponent
         void TickBPMComp();
 
         void BPMHit();
+
+        void tick(float elapsed_time) override;
 
 };

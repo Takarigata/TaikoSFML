@@ -8,6 +8,7 @@ TaikoNote::TaikoNote()
     animated_textured_sprite_comp->GetSpriteRef_ptr()->setScale(1.0f, 1.0f);
     current_note_type = note_type::ka;
     note_clock = SineWaveGenerator(10);
+    bpm_tick(0);
 }
 
 TaikoNote::TaikoNote(note_type in_note_type, sf::Vector2f in_start_pos, sf::Vector2f in_end_pos, float in_note_time)
@@ -17,13 +18,14 @@ TaikoNote::TaikoNote(note_type in_note_type, sf::Vector2f in_start_pos, sf::Vect
     note_clock = SineWaveGenerator(in_note_time);
 
     animated_textured_sprite_comp = new AnimatedTexturedSpriteComponent(sf::Vector2f(1, 1), "Assets/Game/Notes.png");
-    animated_textured_sprite_comp->GetSpriteRef_ptr()->setScale(1.0f, 1.0f);
+    animated_textured_sprite_comp->GetSpriteRef_ptr()->setScale(1.5f, 1.5f);
     current_note_type = in_note_type;
     start_position = in_start_pos;
     end_position = in_end_pos;
     note_time = in_note_time;
     m_deltaClock = sf::Clock();
     m_deltaClock.restart();
+    bpm_tick(0);
 }
 
 void TaikoNote::bpm_tick(float elapsed_time)
@@ -42,6 +44,9 @@ void TaikoNote::tick(float elapsed_time)
     }
     else
     {
+        //printf("Delete \n");
+        animated_textured_sprite_comp->GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, 0));
+
         //delete this;
     }
 }
@@ -64,6 +69,17 @@ sf::IntRect TaikoNote::get_note_rec_value()
     case note_type::hit:
         return sf::IntRect(0, 0, 130, 130);
         break;
+
+    case note_type::big_ka:
+        if(mouth_open)
+            return sf::IntRect(520, 0, 130, 130);
+        else
+            return sf::IntRect(520, 130, 130, 130);
+    case note_type::big_don:
+        if(mouth_open)
+            return sf::IntRect(390, 0, 130, 130);
+        else
+            return sf::IntRect(390, 130, 130, 130);
     
     default:
         break;

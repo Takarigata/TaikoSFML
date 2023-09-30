@@ -8,4 +8,6 @@ class AnimatedTexturedSpriteComponent : public TexturedSpriteComponent
         AnimatedTexturedSpriteComponent();
         ~AnimatedTexturedSpriteComponent();
 
+        void tick(float elapsed_time) override;
+
 };

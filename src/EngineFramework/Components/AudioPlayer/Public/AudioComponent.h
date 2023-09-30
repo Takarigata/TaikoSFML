@@ -33,6 +33,8 @@ class AudioComponent : public BaseComponent
         AudioComponent(AudioComponentSettings in_settings);
         ~AudioComponent();
 
+        void tick(float elapsed_time) override;
+
         AudioComponentSettings ACS;
 
         void SetAudioComponentSettings(AudioComponentSettings in_settings);
