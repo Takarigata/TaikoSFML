@@ -1,4 +1,4 @@
-#include "../Public/GameScene.h"
+﻿#include "../Public/GameScene.h"
 
 GameScene::GameScene()
 {
@@ -18,6 +18,20 @@ void GameScene::InitScene()
 
     note_start_pos = SFMLTransformLib::CalculateScreenPos(1, 0.360f);
     note_end_pos = SFMLTransformLib::CalculateScreenPos(0.305f, 0.360f);
+
+    font = new sf::Font();
+    font->loadFromFile("Assets/Fonts/DFPKanteiryu-XB.ttf");
+    player_name = new sf::Text();
+    player_name->setFont(*font);
+    player_name->setString(L"チャロッテさん");
+    player_name->setCharacterSize(30);
+    player_name->setStyle(sf::Text::Bold);
+    player_name->setOutlineColor(sf::Color::Black);
+    player_name->setOutlineThickness(5);
+    player_name->setFillColor(sf::Color::White);
+    player_name->setPosition(SFMLTransformLib::CalculateScreenPos(0.020f, 0.275f));
+
+    taiko_char = new BaseTaikoCharacter();
 
     player_background = new TexturedSpriteComponent(sf::Vector2f(1.5f, 1.5f), "Assets/Game/1P_Background.png", "1P_Background");
     player_background->SetSpriteOriginToCenter();
@@ -65,29 +79,25 @@ void GameScene::InitScene()
     left_don_sprite->SetSpriteOriginToCenter();
     left_don_sprite->GetSpriteRef_ptr()->setPosition(SFMLTransformLib::CalculateScreenPos(0.205f, 0.375f));
     left_don_sprite->setup_drum(true);
-    // left_don_sprite->GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, 0));
 
     right_don_sprite = new DrumPart(sf::Vector2f(1.5f, 1.5f), "Assets/Game/Don.png", "RightDon");
     right_don_sprite->SetSpriteOriginToCenter();
     right_don_sprite->GetSpriteRef_ptr()->setPosition(SFMLTransformLib::CalculateScreenPos(0.252f, 0.375f));
     right_don_sprite->setup_drum(false);
-    // right_don_sprite->GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, 0));
 
     left_ka_sprite = new DrumPart(sf::Vector2f(1.5f, 1.5f), "Assets/Game/Ka.png", "LeftKa");
     left_ka_sprite->SetSpriteOriginToCenter();
     left_ka_sprite->GetSpriteRef_ptr()->setPosition(SFMLTransformLib::CalculateScreenPos(0.205f, 0.375f));
     left_ka_sprite->setup_drum(true);
-    // left_ka_sprite->GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, 0));
 
     right_ka_sprite = new DrumPart(sf::Vector2f(1.5f, 1.5f), "Assets/Game/Ka.png", "RightKa");
     right_ka_sprite->SetSpriteOriginToCenter();
     right_ka_sprite->GetSpriteRef_ptr()->setPosition(SFMLTransformLib::CalculateScreenPos(0.252f, 0.375f));
     right_ka_sprite->setup_drum(false);
-    // right_ka_sprite->GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, 0));
-
     //BACKGROUND SPRITE
     background_layer.push_back(header_background->GetSpriteRef_ptr());
     background_layer.push_back(player_background->GetSpriteRef_ptr());
+    background_layer.push_back(taiko_char->taiko_sprite_comp->GetSpriteRef_ptr());
     background_layer.push_back(player_lane_background->GetSpriteRef_ptr());
     background_layer.push_back(player_lane_sub_background->GetSpriteRef_ptr());
     background_layer.push_back(player_frame->GetSpriteRef_ptr());
@@ -101,8 +111,9 @@ void GameScene::InitScene()
     game_layer.push_back(right_don_sprite->GetSpriteRef_ptr());
     game_layer.push_back(right_ka_sprite->GetSpriteRef_ptr());
     game_layer.push_back(note_hit->GetSpriteRef_ptr());
-    //game_layer.push_back(test_note->animated_textured_sprite_comp->GetSpriteRef_ptr());
 
+
+    sprite_debug->debug_sprite_list.push_back(taiko_char->taiko_sprite_comp);
     sprite_debug->debug_sprite_list.push_back(player_background);
     sprite_debug->debug_sprite_list.push_back(player_frame);
     sprite_debug->debug_sprite_list.push_back(game_background);
@@ -116,10 +127,7 @@ void GameScene::InitScene()
     sprite_debug->debug_sprite_list.push_back(right_don_sprite);
     sprite_debug->debug_sprite_list.push_back(right_ka_sprite);
     sprite_debug->debug_sprite_list.push_back(note_hit);
-    // obj_to_render.push_back(player_background->GetSpriteRef());
-    // obj_to_render.push_back(player_frame->GetSpriteRef());
-    // obj_to_render.push_back(don_sprite->GetSpriteRef());
-    // obj_to_render.push_back(ka_sprite->GetSpriteRef());
+
 
     InitTJAPlayer();
 }
@@ -137,6 +145,7 @@ void GameScene::RenderScene()
     left_ka_sprite->tick(0);
     right_don_sprite->tick(0);
     right_ka_sprite->tick(0);
+    taiko_char->tick(0);
     for (auto note : note_on_screen)
     {
         if(note != nullptr)
@@ -146,6 +155,7 @@ void GameScene::RenderScene()
     rect_shape.setFillColor(sf::Color::White);
     window_ref->draw(rect_shape);
     Scene::RenderScene();
+    window_ref->draw(*player_name);
     ParseNote();
 }
 

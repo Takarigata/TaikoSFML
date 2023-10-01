@@ -10,18 +10,6 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Clock.hpp>
 
-// struct RenderableObject
-// {
-//     int z_order;
-//     sf::Drawable* drawable;
-
-//     RenderableObject(int in_order, sf::Drawable* in_sprite)
-//     {
-//         z_order = in_order;
-//         drawable = in_sprite;
-//     }
-// };
-
 class Scene
 {
     public:

@@ -8,6 +8,7 @@
 #include "TJAParser.h"
 #include <vector>
 #include "../../../TaikoFramework/Actor/Notes/Public/Note.h"
+#include "../../../TaikoFramework/Actor/TaikoCharacter/Public/TaikoCharacter.h"
 #include "../../../TaikoFramework/Components/DrumPart/Public/DrumPart.h"
 
 
@@ -42,6 +43,8 @@ class GameScene : public Scene
         TexturedSpriteComponent* header_background;
 
         TexturedSpriteComponent* footer_background;
+
+        BaseTaikoCharacter* taiko_char;
 
         DrumPart* drum_base;
 
@@ -78,5 +81,10 @@ class GameScene : public Scene
         int current_note = 0;
 
         int current_spawned_note = 0;
+
+        sf::Text* player_name;
+
+
+        sf::Font* font;
 
 };
