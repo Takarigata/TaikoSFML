@@ -166,10 +166,11 @@ void GameScene::SetupGFX()
 
 void GameScene::InitTJAPlayer()
 {
-    AudioComponentSettings Settings = AudioComponentSettings("E:\\DEV\\TJADB\\ESE\\01 Pop\\Pretender\\Pretender.ogg", false, 15, 0, 1);
+    AudioComponentSettings Settings = AudioComponentSettings("E:\\DEV\\TJADB\\ESE\\01 Pop\\Zen Zen Zense\\Zen Zen Zense.ogg", false, 15, 0, 1);
     // AudioComponentSettings Settings = AudioComponentSettings("E:\\DEV\\TJADB\\ESE\\01 Pop\\oddloop\\oddloop.ogg", false, 10, 0, 1);
     music_player = new AudioComponent(Settings);
     music_player->PlaySound();
+    
     AudioComponentSettings SettingsDebugHitKa = AudioComponentSettings("Assets\\SFX\\ka.ogg", false, 25, 0, 1);
     debug_hit_ka = new AudioComponent(SettingsDebugHitKa);
 
@@ -185,9 +186,15 @@ void GameScene::InitTJAPlayer()
 
 void GameScene::ParseNote()
 {
-    int current_time = tja_clock.getElapsedTime().asMilliseconds() + (TJAParser::instance().DebugMap->offset * 1000);
+    int current_time = tja_clock.getElapsedTime().asMilliseconds() - 240;
+
+    if(current_time > 0 && !is_playing)
+    {
+        
+        is_playing = true;
+    }
     // int current_time = tja_clock.getElapsedTime().asMilliseconds() + 0;
-    //printf("OFFSET = %f \n ", TJAParser::instance().DebugMap->bpm);
+    //printf("current time = %d \n ", current_time);
     //AUTO PLAY
     if(current_note < TJAParser::instance().DebugMap->current_note_vector.size())
     {

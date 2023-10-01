@@ -87,4 +87,6 @@ class GameScene : public Scene
 
         sf::Font* font;
 
+        bool is_playing = false;
+
 };

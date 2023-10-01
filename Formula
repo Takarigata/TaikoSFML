@@ -1,0 +1,9 @@
+﻿# Compute the change in fumenOffset (i.e. the duration of the measure)
+        // measureSize = measureTJA['time_sig'][0] / measureTJA['time_sig'][1]
+        // measureLength = measureTJA['pos_end'] - measureTJA['pos_start']
+        // measureRatio = 1.0 if measureTJA['subdivisions'] == 0.0 else (measureLength / measureTJA['subdivisions'])
+        // measureDuration = (4 * 60_000 * measureSize * measureRatio / measureTJA['bpm'])
+        // # The following adjustment accounts for mid-measure BPM changes, where the measure is split into "sub-measures"
+        // # (!!! Discovered by tana :3 !!!)
+        // if measureRatio != 1.0:
+        //     measureDuration -= (4 * 60_000 * ((1 / tja['measures'][idx_m+1]['bpm']) - (1 / measureTJA['bpm'])))

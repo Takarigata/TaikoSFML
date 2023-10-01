@@ -309,12 +309,22 @@ void TJAMap::parse_diff(map_difficulty diff_to_parse)
                 
                 if(course_data.find(L'#') == -1 && course_data.find(L',') != -1)
                 {
+
+        //              # Compute the change in fumenOffset (i.e. the duration of the measure)
+        // measureSize = measureTJA['time_sig'][0] / measureTJA['time_sig'][1]
+        // measureLength = measureTJA['pos_end'] - measureTJA['pos_start']
+        // measureRatio = 1.0 if measureTJA['subdivisions'] == 0.0 else (measureLength / measureTJA['subdivisions'])
+        // measureDuration = (4 * 60_000 * measureSize * measureRatio / measureTJA['bpm'])
+        // # The following adjustment accounts for mid-measure BPM changes, where the measure is split into "sub-measures"
+        // # (!!! Discovered by tana :3 !!!)
+        // if measureRatio != 1.0:
+        //     measureDuration -= (4 * 60_000 * ((1 / tja['measures'][idx_m+1]['bpm']) - (1 / measureTJA['bpm'])))
                     //course_data.erase(remove(course_data.begin(), course_data.end(), L','), course_data.end());
                     wprintf(L"SELECTED NOTE Raw Data =  %s \n", course_data.c_str());
                     int postest = course_data.find(L",");
                     course_data = course_data.substr(0, postest).c_str();
                      wprintf(L"SELECTED NOTE  Data =  %s \n", course_data.c_str());
-                    float current_measure = 60000 * calculate_measure(part, beat) * (4 / (bpm ));
+                    float current_measure = 4 * 60000 * calculate_measure(part, beat) * 1 / bpm;
                     globaltime += current_measure;
 
                     if(course_data.length() > 0)
@@ -333,7 +343,7 @@ void TJAMap::parse_diff(map_difficulty diff_to_parse)
                             if(character == L"1" || character == L"2" || character == L"3" || character == L"4")
                             {
                                 note_timing current_note;
-                                current_note.note_time = ((offset * 1000) * (- 1) + globaltime + ((current_measure / characterArray.size()) * (i + 1)));
+                                current_note.note_time = (globaltime + ((current_measure / characterArray.size()) * (i + 1)));
                                 current_note.current_note_type = parse_note_type(character);
                                 current_note.note_count = current_note_count;
                                 current_note_count++;

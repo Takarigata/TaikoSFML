@@ -6,14 +6,14 @@
 GameSFML *gameSFML = nullptr;
 int main(int argc, char* argv[])
 {
-	std::string path = "E:\\DEV\\TJADB\\ESE\\01 Pop\\Pretender\\Pretender.tja";
+	std::string path = "E:\\DEV\\TJADB\\ESE\\01 Pop\\Zen Zen Zense\\Zen Zen Zense.tja";
 	// std::string path = "E:\\DEV\\TJADB\\ESE\\01 Pop\\oddloop\\oddloop.tja";
 	
 
 	// std::string path = "E:\\DEV\\TJADB\\ESE\\01 Pop\\Zen Zen Zense\\Zen Zen Zense.tja";
 	// std::string path = "E:/DEV/ボーカロイド.tja";
 	TJAMap* map = TJAParser::instance().ParseTJAMap(path);
-	map->parse_diff(map_difficulty::oni);
+	map->parse_diff(map_difficulty::hard);
 
 	TJAParser::instance().DebugMap = map;
 
