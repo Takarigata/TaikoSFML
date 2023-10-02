@@ -2,7 +2,7 @@
 
 BaseTaikoCharacter::BaseTaikoCharacter()
 {
-    setup_character();
+    //setup_character();
 }
 
 BaseTaikoCharacter::~BaseTaikoCharacter()
@@ -20,21 +20,23 @@ void BaseTaikoCharacter::bpm_tick(float elapsed_time)
     update_taiko_char_anim();
 }
 
-void BaseTaikoCharacter::setup_character()
+void BaseTaikoCharacter::setup_character(int in_bpm, std::string in_file_path, sf::Vector2f in_scale, std::string in_char_name)
 {
-    taiko_sprite_comp = new TexturedSpriteComponent(sf::Vector2f(1.3f, 1.3f), "Assets/Game/Characters/TaikoBaseChar.png", "taiko_char");
-    sf::Vector2f pos =  SFMLTransformLib::CalculateScreenPos(-0.025f, 0.275f);
-    taiko_sprite_comp->GetSpriteRef_ptr()->setPosition(pos);
-    bpm_comp = BPMSignalComponent(1800);
+    char_name = in_char_name;
+    taiko_sprite_comp = new TexturedSpriteComponent(in_scale, "Assets/Game/Characters/TaikoBaseChar.png", char_name.c_str());
+    character_sprite_seq_path = in_file_path;
+    bpm_comp = BPMSignalComponent(in_bpm);
     bpm_comp.add_bpm_actor_listener(this);
 
 }
 
 void BaseTaikoCharacter::update_taiko_char_anim()
 {
-    if(current_sprite_sheet_pos < 118)
+    if(current_sprite_sheet_pos < max_sprite)
     {
-        taiko_sprite_comp->GetSpriteTexture()->loadFromFile("Assets/Game/Characters/0/Normal/" + std::to_string(current_sprite_sheet_pos) + ".png");
+        taiko_sprite_comp->GetSpriteTexture()->loadFromFile(character_sprite_seq_path + std::to_string(current_sprite_sheet_pos) + ".png");
+        taiko_sprite_comp->GetSpriteRef_ptr()->setTexture(*taiko_sprite_comp->GetSpriteTexture());
+        taiko_sprite_comp->GetSpriteRef_ptr()->setTextureRect(sf::IntRect(0, 0, taiko_sprite_comp->GetSpriteTexture()->getSize().x, taiko_sprite_comp->GetSpriteTexture()->getSize().y));
         current_sprite_sheet_pos++;
     }
     else

@@ -9,6 +9,7 @@
 #include <vector>
 #include "../../../TaikoFramework/Actor/Notes/Public/Note.h"
 #include "../../../TaikoFramework/Actor/TaikoCharacter/Public/TaikoCharacter.h"
+#include "../../../TaikoFramework/Actor/PuchiChara/Public/PuchiCharacter.h"
 #include "../../../TaikoFramework/Components/DrumPart/Public/DrumPart.h"
 
 
@@ -44,7 +45,25 @@ class GameScene : public Scene
 
         TexturedSpriteComponent* footer_background;
 
+        TexturedSpriteComponent* diff_icon;
+
+        TexturedSpriteComponent* sogn_genre_plate;
+
+        TexturedSpriteComponent* player_score_frame;
+
+        TexturedSpriteComponent* player_gauge_full;
+
+        TexturedSpriteComponent* player_gauge_empty;
+
         BaseTaikoCharacter* taiko_char;
+
+        BaseTaikoCharacter* dancer_char;
+
+        BaseTaikoCharacter* dancer_char_2;
+
+        BaseTaikoCharacter* dancer_char_3;
+
+        BasePuchiCharacter* puchi_char;
 
         DrumPart* drum_base;
 
@@ -83,6 +102,14 @@ class GameScene : public Scene
         int current_spawned_note = 0;
 
         sf::Text* player_name;
+
+        sf::Text* combo_count_text;
+
+        sf::Text* combo_static_text;
+
+        sf::Text* song_name;
+
+        int current_combo = 0;
 
 
         sf::Font* font;

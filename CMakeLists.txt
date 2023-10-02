@@ -44,7 +44,8 @@ target_include_directories(TaikoSFML PRIVATE
     src/TaikoFramework/Scene/MainMenu/Public
     src/TaikoFramework/Scene/GameScene/Public
     src/TaikoFramework/Actor/Notes/Public
-    src/TaikoFramework/TaikoCharacter/Public
+    src/TaikoFramework/Actor/TaikoCharacter/Public
+    src/TaikoFramework/Actor/PuchiChara/Public
     src/TaikoFramework/Components/DrumPart/Public
     src/GameFramework/Utilities/Public
     src/GameFramework/Input/Public
