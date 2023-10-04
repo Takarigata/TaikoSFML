@@ -1,23 +1,18 @@
 #include "../Public/TJAMap.h"
 #include "../Public/TJAParser.h"
 
-
+//WIP Parsing is wip for now it can be greatly optimized
 vector<wstring> explode(const wstring& str, const char& ch) {
     wstring next;
     vector<wstring> result;
 
-    // For each character in the string
     for (wstring::const_iterator it = str.begin(); it != str.end(); it++) {
-        // If we've hit the terminal character
         if (*it == ch) {
-            // If we have some characters accumulated
             if (!next.empty()) {
-                // Add them to the result vector
                 result.push_back(next);
                 next.clear();
             }
         } else {
-            // Accumulate the next character into the sequence
             next += *it;
         }
     }
@@ -309,16 +304,16 @@ void TJAMap::parse_diff(map_difficulty diff_to_parse)
                 
                 if(course_data.find(L'#') == -1 && course_data.find(L',') != -1)
                 {
-
-        //              # Compute the change in fumenOffset (i.e. the duration of the measure)
-        // measureSize = measureTJA['time_sig'][0] / measureTJA['time_sig'][1]
-        // measureLength = measureTJA['pos_end'] - measureTJA['pos_start']
-        // measureRatio = 1.0 if measureTJA['subdivisions'] == 0.0 else (measureLength / measureTJA['subdivisions'])
-        // measureDuration = (4 * 60_000 * measureSize * measureRatio / measureTJA['bpm'])
-        // # The following adjustment accounts for mid-measure BPM changes, where the measure is split into "sub-measures"
-        // # (!!! Discovered by tana :3 !!!)
-        // if measureRatio != 1.0:
-        //     measureDuration -= (4 * 60_000 * ((1 / tja['measures'][idx_m+1]['bpm']) - (1 / measureTJA['bpm'])))
+                    //WIP Magic Formula to implement correctly with sub measure and bpm for each note
+                    // # Compute the change in fumenOffset (i.e. the duration of the measure)
+                    // measureSize = measureTJA['time_sig'][0] / measureTJA['time_sig'][1]
+                    // measureLength = measureTJA['pos_end'] - measureTJA['pos_start']
+                    // measureRatio = 1.0 if measureTJA['subdivisions'] == 0.0 else (measureLength / measureTJA['subdivisions'])
+                    // measureDuration = (4 * 60_000 * measureSize * measureRatio / measureTJA['bpm'])
+                    // # The following adjustment accounts for mid-measure BPM changes, where the measure is split into "sub-measures"
+                    // # (!!! Discovered by tana :3 !!!)
+                    // if measureRatio != 1.0:
+                    //     measureDuration -= (4 * 60_000 * ((1 / tja['measures'][idx_m+1]['bpm']) - (1 / measureTJA['bpm'])))
                     //course_data.erase(remove(course_data.begin(), course_data.end(), L','), course_data.end());
                     wprintf(L"SELECTED NOTE Raw Data =  %s \n", course_data.c_str());
                     int postest = course_data.find(L",");
@@ -339,7 +334,6 @@ void TJAMap::parse_diff(map_difficulty diff_to_parse)
                         for(int i = 0; i < characterArray.size() - 1; i++)
                         {
                             wstring character = characterArray[i];
-                            //wprintf(L"Character: %s\n", character.c_str());
                             if(character == L"1" || character == L"2" || character == L"3" || character == L"4")
                             {
                                 note_timing current_note;
@@ -347,7 +341,6 @@ void TJAMap::parse_diff(map_difficulty diff_to_parse)
                                 current_note.current_note_type = parse_note_type(character);
                                 current_note.note_count = current_note_count;
                                 current_note_count++;
-                                //wprintf(L"NOTE ENUM = : %d \n", current_note.current_note_type);
                                 current_note_vector.push_back(current_note);
                             }
                         }
