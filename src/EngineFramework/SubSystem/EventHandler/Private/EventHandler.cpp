@@ -14,7 +14,6 @@ void EventHandler::UpdateInputEvent(GameSFML* InGame)
 {
     if(InGame)
     {
-        //printf("UPDATING INPUT \n");
         sf::Event event;
         //TODO: REPLACE WITH NEW SUB
         sf::RenderWindow* m_window = WindowManager::instance().m_window;
@@ -66,6 +65,6 @@ void EventHandler::SendPressed()
 {
     for(auto & Listnener : ListeningInputComponent)
     {
-        Listnener->method1();
+        Listnener->drum_hit();
     }
 }

@@ -12,7 +12,5 @@ class InputComponent : public Interface
 
         void CloseInterface();
 
-        void method1();
-
-        void method2();
+        void drum_hit();
 };

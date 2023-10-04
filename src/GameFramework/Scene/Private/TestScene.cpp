@@ -2,6 +2,7 @@
 
 void TestScene::InitScene()
 {
+    //OLD SCENE CONSTRUCTION 
     SceneName = "Test Scene 2 ";
     // font = new sf::Font();
     // if(font)

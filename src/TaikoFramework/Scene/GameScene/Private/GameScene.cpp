@@ -12,6 +12,41 @@ GameScene::~GameScene()
 
 void GameScene::InitScene()
 {
+    
+    InitSceneComp();
+    InitTJAPlayer();
+
+}
+
+
+void GameScene::RenderScene()
+{
+    bpm_comp.TickBPMComp();
+    left_don_sprite->tick(0);
+    left_ka_sprite->tick(0);
+    right_don_sprite->tick(0);
+    right_ka_sprite->tick(0);
+    taiko_char->tick(0);
+    dancer_char->tick(0);
+    dancer_char_2->tick(0);
+    dancer_char_3->tick(0);
+    puchi_char->tick(0);
+    for (auto note : note_on_screen)
+    {
+        if(note != nullptr)
+            note->tick(0);
+    }
+    Scene::RenderScene();
+    //WIP NO ENCAPSULATION FOR sfml::Text
+    window_ref->draw(*player_name);
+    window_ref->draw(*combo_count_text);
+    window_ref->draw(*combo_static_text);
+    window_ref->draw(*song_name);
+    ParseNote();
+}
+
+void GameScene::InitSceneComp()
+{
     sprite_debug = new SpritePosDebug();
     DebugManager::instance().add_debug_window(sprite_debug);
     printf("INIT SCENE \n");
@@ -172,6 +207,7 @@ void GameScene::InitScene()
     right_ka_sprite->SetSpriteOriginToCenter();
     right_ka_sprite->GetSpriteRef_ptr()->setPosition(SFMLTransformLib::CalculateScreenPos(0.252f, 0.375f));
     right_ka_sprite->setup_drum(false);
+    
     //BACKGROUND SPRITE
     background_layer.push_back(header_background->GetSpriteRef_ptr());
     background_layer.push_back(player_background->GetSpriteRef_ptr());
@@ -199,6 +235,7 @@ void GameScene::InitScene()
     game_layer.push_back(note_hit->GetSpriteRef_ptr());
 
 
+    //WIP DEBBUG TOOLS 
     sprite_debug->debug_sprite_list.push_back(taiko_char->taiko_sprite_comp);
     sprite_debug->debug_sprite_list.push_back(dancer_char->taiko_sprite_comp);
     sprite_debug->debug_sprite_list.push_back(dancer_char_2->taiko_sprite_comp);
@@ -223,70 +260,23 @@ void GameScene::InitScene()
     sprite_debug->debug_sprite_list.push_back(player_gauge_full);
     sprite_debug->debug_sprite_list.push_back(player_gauge_empty);
 
-    InitTJAPlayer();
-}
-
-void GameScene::RenderScene()
-{
-    bpm_comp.TickBPMComp();
-    // if(test_note)
-    // {
-    //     //test_note->bpm_tick(0);
-    //     test_note->tick(0);
-    // }
-
-    left_don_sprite->tick(0);
-    left_ka_sprite->tick(0);
-    right_don_sprite->tick(0);
-    right_ka_sprite->tick(0);
-    taiko_char->tick(0);
-    dancer_char->tick(0);
-    dancer_char_2->tick(0);
-    dancer_char_3->tick(0);
-    puchi_char->tick(0);
-    for (auto note : note_on_screen)
-    {
-        if(note != nullptr)
-            note->tick(0);
-    }
-    sf::RectangleShape rect_shape(sf::Vector2f(5000, 5000));
-    rect_shape.setFillColor(sf::Color::White);
-    window_ref->draw(rect_shape);
-    Scene::RenderScene();
-    window_ref->draw(*player_name);
-    window_ref->draw(*combo_count_text);
-    window_ref->draw(*combo_static_text);
-    window_ref->draw(*song_name);
-    ParseNote();
-}
-
-void GameScene::SetupGFX()
-{
-
-}
-
-void CenterText(sf::Text in_text)
-{
-    // Set the origin to the center of the text
-    sf::FloatRect textRect = in_text.getLocalBounds();
-    in_text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 }
 
 void GameScene::InitTJAPlayer()
 {
-    AudioComponentSettings Settings = AudioComponentSettings("E:\\DEV\\TJADB\\ESE\\01 Pop\\Zen Zen Zense\\Zen Zen Zense.ogg", false, 5, 0, 1);
-    // AudioComponentSettings Settings = AudioComponentSettings("E:\\DEV\\TJADB\\ESE\\01 Pop\\oddloop\\oddloop.ogg", false, 10, 0, 1);
+    AudioComponentSettings Settings = AudioComponentSettings("Songs\\Test\\Zen Zen Zense\\Zen Zen Zense.ogg", false, 65, 0, 1);
     music_player = new AudioComponent(Settings);
     music_player->PlaySound();
     
-    AudioComponentSettings SettingsDebugHitKa = AudioComponentSettings("Assets\\SFX\\ka.ogg", false, 15, 0, 1);
+    AudioComponentSettings SettingsDebugHitKa = AudioComponentSettings("Assets\\SFX\\ka.ogg", false, 60, 0, 1);
     debug_hit_ka = new AudioComponent(SettingsDebugHitKa);
 
-    AudioComponentSettings SettingsDebugHitDon = AudioComponentSettings("Assets\\SFX\\don.ogg", false, 15, 0, 1);
+    AudioComponentSettings SettingsDebugHitDon = AudioComponentSettings("Assets\\SFX\\don.ogg", false, 70, 0, 1);
     debug_hit_don = new AudioComponent(SettingsDebugHitDon);
     tja_clock = sf::Clock();
 
-    bpm_comp = BPMSignalComponent(TJAParser::instance().DebugMap->bpm);
+    TJAMap* map = TJAParser::instance().DebugMap;
+    bpm_comp = BPMSignalComponent(map->bpm);
     
 
 }
@@ -296,14 +286,6 @@ void GameScene::ParseNote()
 {
     int current_time = tja_clock.getElapsedTime().asMilliseconds() - 240;
 
-    if(current_time > 0 && !is_playing)
-    {
-        
-        is_playing = true;
-    }
-    // int current_time = tja_clock.getElapsedTime().asMilliseconds() + 0;
-    //printf("current time = %d \n ", current_time);
-    //AUTO PLAY
     if(current_note < TJAParser::instance().DebugMap->current_note_vector.size())
     {
         if(current_time >= (int) TJAParser::instance().DebugMap->current_note_vector[current_note].note_time)
@@ -349,7 +331,6 @@ void GameScene::ParseNote()
         float current_note_time = (int) TJAParser::instance().DebugMap->current_note_vector[current_spawned_note].note_time - (1000 * scrollspeed);
         if(current_time >= current_note_time)
         {
-            //printf("HIT NOTE NO = %d CURRENT TIME = %d, Current NOTE TIME = %d \n",   TJAParser::instance().DebugMap->current_note_vector[current_spawned_note].note_count, current_time, (int) current_note_time);
             TaikoNote* Tmp_Note = new TaikoNote(TJAParser::instance().DebugMap->current_note_vector[current_spawned_note].current_note_type, note_start_pos,  note_end_pos, 1 * scrollspeed);
             note_on_screen.push_back(Tmp_Note);
             game_layer.push_back(Tmp_Note->animated_textured_sprite_comp->GetSpriteRef_ptr());

@@ -44,10 +44,8 @@ void TaikoNote::tick(float elapsed_time)
     }
     else
     {
-        //printf("Delete \n");
         animated_textured_sprite_comp->GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, 0));
 
-        //delete this;
     }
 }
 

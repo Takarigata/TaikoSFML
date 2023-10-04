@@ -7,3 +7,15 @@
         // # (!!! Discovered by tana :3 !!!)
         // if measureRatio != 1.0:
         //     measureDuration -= (4 * 60_000 * ((1 / tja['measures'][idx_m+1]['bpm']) - (1 / measureTJA['bpm'])))
+
+
+uniform sampler2D current; 
+
+void main()
+{
+  vec2 uv = gl_TexCoord[0].xy;
+  float alpha = 0.5 - uv.x;
+  vec4 pixel = texture2D(current, uv);
+  pixel.a = pixel.a * alpha ;
+  gl_FragColor = pixel;
+}

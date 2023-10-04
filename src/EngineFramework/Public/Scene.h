@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 #include "../../SubSystem/WindowManager/Public/WindowManager.h"
+#include "../../EngineFramework/Actor/Public/BaseActor.h"
 #include "SFMLTransformUtility.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Texture.hpp>
@@ -35,6 +36,9 @@ class Scene
         std::vector<sf::Sprite*> foreground_layer;
 
         std::vector<sf::Sprite*> ui_layer;
+
+        std::vector<BaseActor*> tickable_actor;
+
 
     protected:
 

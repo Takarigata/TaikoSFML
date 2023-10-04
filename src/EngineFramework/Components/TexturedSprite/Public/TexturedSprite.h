@@ -19,6 +19,7 @@ class TexturedSpriteComponent : public BaseComponent
         sf::Texture* GetSpriteTexture() { return sprite_texture; };
 
         sf::Sprite* GetSpriteRef_ptr() { return sprite_obj; };
+        
         sf::Sprite GetSpriteRef() { return *sprite_obj; };
 
         void SetSpriteScale(sf::Vector2f new_scale);

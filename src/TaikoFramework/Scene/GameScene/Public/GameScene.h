@@ -23,13 +23,15 @@ class GameScene : public Scene
 
         void RenderScene() override;
 
-        void SetupGFX();
+        void InitSceneComp();
 
         void InitTJAPlayer();
 
         void ParseNote();
 
     protected:
+
+        //COMPONENTS
 
         TexturedSpriteComponent* player_background;
 
@@ -87,9 +89,9 @@ class GameScene : public Scene
 
         BPMSignalComponent bpm_comp;
 
+        //WIP TJA PARSING
+
         sf::Clock tja_clock;
-        
-        TaikoNote* test_note;
 
         std::vector<TaikoNote*> note_on_screen;
 
@@ -111,9 +113,16 @@ class GameScene : public Scene
 
         int current_combo = 0;
 
-
         sf::Font* font;
 
-        bool is_playing = false;
+        //DEBUG SHADER
+
+        sf::Texture debug_tex;
+
+        sf::Sprite debug_sprite;
+
+        sf::Shader shader;
+
+        sf::RenderTexture renderTexture;
 
 };

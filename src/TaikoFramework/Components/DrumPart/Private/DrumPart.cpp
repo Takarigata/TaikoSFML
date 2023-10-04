@@ -31,7 +31,14 @@ void DrumPart::setup_drum(bool left_side)
 void DrumPart::DrumPressed()
 {
     drum_clock.restart();
+    //GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, 0));
     anim_in_progress = true;
+}
+
+void DrumPart::DebugValue()
+{
+    int new_alpha = MathLib::Lerp(255, 0, MathLib::MapRangeClamp(drum_clock.getElapsedTime().asSeconds(), 0, 0.5f, 0, 1));
+    //printf("ALPHA VALUE = %d \n", new_alpha);
 }
 
 void DrumPart::tick(float elapsed_time)
@@ -40,8 +47,12 @@ void DrumPart::tick(float elapsed_time)
     {
         int new_alpha = MathLib::Lerp(255, 0, MathLib::MapRangeClamp(drum_clock.getElapsedTime().asSeconds(), 0, 0.5f, 0, 1));
         GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, new_alpha));
-        anim_in_progress = new_alpha > 0;
+        anim_in_progress = new_alpha > 5;
     }
     else
+    {
         GetSpriteRef_ptr()->setColor(sf::Color(255, 255, 255, 0));
+        anim_in_progress = false;
+    }
+        
 }

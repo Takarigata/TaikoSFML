@@ -17,6 +17,8 @@ class DrumPart : public TexturedSpriteComponent
 
         void DrumPressed();
 
+        void DebugValue();
+
         sf::Clock drum_clock;
 
         bool anim_in_progress = false;

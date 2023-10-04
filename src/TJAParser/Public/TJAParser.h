@@ -17,7 +17,6 @@ public:
     TJAParser(token) {}
     ~TJAParser() {}
 
-    void use() const {};
 
     TJAMap* ParseTJAMap(std::string& file_path);
 

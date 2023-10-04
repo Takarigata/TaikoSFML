@@ -1,14 +1,10 @@
 #include "../Public/InputComponent.h"
 
-void InputComponent::method1()
+void InputComponent::drum_hit()
 {
-   printf("Triggerd \n");
+   printf("DRUM HIT \n");
 }
 
-void InputComponent::method2()
-{
-    printf("Triggerd 2 \n");
-}
 
 void InputComponent::InitInterface()
 {

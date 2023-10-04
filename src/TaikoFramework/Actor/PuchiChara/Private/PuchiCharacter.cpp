@@ -30,14 +30,12 @@ void BasePuchiCharacter::setup_character(PuchiCharacterSettings in_settings)
     puchi_sprite_comp = new TexturedSpriteComponent(puchi_settings.puch_scale, "Assets/5_Game/18_PuchiChara/0.png", puchi_settings.puchi_actor_name);
     bpm_comp = BPMSignalComponent(puchi_settings.anim_speed);
     bpm_comp.add_bpm_actor_listener(this);
-    //puchi_sprite_comp->SetSpriteOriginToCenter();
     sf::IntRect rect = SFMLSpriteUtility::get_sprite_inrect_by_xypos(puchi_settings.puchi_start_row, puchi_settings.puchi_start_collums, 256, 265);
     puchi_sprite_comp->GetSpriteRef_ptr()->setTextureRect(rect);
     puchi_sprite_comp->GetSpriteRef_ptr()->setPosition(in_settings.start_pos);
     max_sprite = 2;
     sine_wave_generator = SineWaveGenerator(5);
     start_pos = SFMLTransformLib::WorldPosToScreenPos(puchi_sprite_comp->GetSpriteRef_ptr()->getPosition());
-    //448 128
 
 }
 

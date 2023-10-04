@@ -31,15 +31,16 @@ void Scene::CloseScene()
 
 void Scene::UpdateScene()
 {
-    //printf("UPDATING SCENE \n");
+    for(auto actor : tickable_actor)
+    {
+        //WIP NEED TO IMPLEMENT GLOBAL CLOCK IN SUBSYSTEM AND COMPONENTS TICKS
+        actor->tick(0);
+    }
     cnt++;
-
 }
 
 void Scene::RenderScene()
 {
-    //printf("RENDER PARENT \n");
-
 
     //BACKGROUND OBJ
     for(auto background_obj : background_layer)

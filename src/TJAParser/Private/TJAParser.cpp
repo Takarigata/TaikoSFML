@@ -15,19 +15,15 @@ TJAMap* TJAParser::ParseTJAMap(std::string& file_path)
         return out;
     }
 
-    // Create a vector to store the lines
     std::vector<std::wstring> lines;
 
-    // Read the file line by line
+
     std::wstring line;
     while (std::getline(file, line)) {
         lines.push_back(line);
         out->raw_map_data.push_back(line);
     }
 
-    // Now you have your Shift-JIS encoded file contents in 'lines'
-
-    // Remember to close the file when done
     file.close();
 
     out->parse_raw_mapdata();

@@ -69,4 +69,10 @@ add_custom_command(
         COMMAND ${CMAKE_COMMAND} -E copy_directory
                 ${CMAKE_SOURCE_DIR}/Assets
                 $<TARGET_FILE_DIR:TaikoSFML>/Assets)
+
+add_custom_command(
+        TARGET ${PROJECT_NAME}  POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+                ${CMAKE_SOURCE_DIR}/Songs
+                $<TARGET_FILE_DIR:TaikoSFML>/Songs)
 install(TARGETS TaikoSFML)

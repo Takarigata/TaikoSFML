@@ -1,5 +1,7 @@
 #include "../Public/FadeTransition.h"
 
+//NEED REIMPLEMENTATION WITH NEW SYSTEM
+
 FadeTransition::FadeTransition(bool in_fade_out, float in_fade_time, bool in_hold_fade)
 {
     fade_out = in_fade_out;
